@@ -1,0 +1,17 @@
+{
+	"Internal link": {
+		"prefix": ["l", "ln", "ilink"],
+		"body": ["[[${1:File}|${2}${1}]] ${0}"],
+		"description": "Add a link to an internal article"
+	},
+	"Definition": {
+		"prefix": ["df", "def"],
+		"body": ["**${1}** — ${0}"],
+		"description": "Add a definition"
+	},
+	"Long dash": {
+		"prefix": ["--"],
+		"body": ["— "],
+		"description": "Insert a long dash"
+	}
+}
