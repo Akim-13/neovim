@@ -1,5 +1,5 @@
 vim.cmd 'hi colorcolumn ctermbg=0'					-- Make a colorcolumn less obtrusive
-vim.cmd "hi TSOperator guibg=NONE ctermbg=NONE"
+vim.cmd 'hi TSOperator guibg=NONE ctermbg=NONE'
 vim.cmd 'hi SpellBad cterm=underline ctermbg=None'	-- Make bad spelling underlined and red
 local options = {
 	number = true,									-- Absolute line numbers

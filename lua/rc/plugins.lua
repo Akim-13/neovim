@@ -96,7 +96,7 @@ return packer.startup(function(use)
   use 'norcalli/nvim-colorizer.lua'
 
   -- Debugger
-  use 'puremourning/vimspector'
+  use "puremourning/vimspector"
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
