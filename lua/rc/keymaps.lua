@@ -67,9 +67,9 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
 
 -- Python
---vim.cmd 'autocmd FileType python nnoremap <buffer> <F5> <ESC>:w<CR>:split<CR>:terminal python3.10 "%"<CR>i'
+--vim.cmd 'autocmd FileType python nnoremap <buffer> <leader><F5> <ESC>:w<CR>:split<CR>:terminal python3.10 "%"<CR>i'
 -- C
-vim.cmd 'autocmd FileType c nnoremap <buffer> <F5> <ESC>:w<CR>:split<CR>:terminal gcc -o cmpd "%" && ./cmpd<CR>i'
+vim.cmd 'autocmd FileType c nnoremap <buffer> <leader><F5> <ESC>:w<CR>:split<CR>:terminal gcc -o cmpd "%" && ./cmpd<CR>i'
 -- Markdown
 vim.cmd 'autocmd FileType markdown nnoremap <silent> <buffer> gf %:let f=expand("<cfile>")<CR>:exe("e ".f).".md"<CR>'
 vim.cmd 'autocmd FileType markdown nnoremap <silent> <buffer> gsf %:let f=expand("<cfile>")<CR>:exe("vs ".f).".md"<CR>'

@@ -1,0 +1,25 @@
+{
+  "configurations": {
+    "Python: Launch": {
+      "adapter": "debugpy",
+	  "breakpoints": {
+	    "exception": {
+	      "caught": "Y",
+		  "uncaught": "Y",
+		  "userUnhandled": "Y",
+		  "raised": "Y"
+	    }
+	  },
+	  "configuration": {
+        "name": "Python: Launch",
+        "type": "python",
+        "request": "launch",
+        "python": "/usr/bin/python",
+		"console": "integratedTerminal",
+        "stopOnEntry": true,
+        "debugOptions": [],
+        "program": "${file}"
+      }
+    }
+  }
+}

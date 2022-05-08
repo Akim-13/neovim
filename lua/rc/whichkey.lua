@@ -101,11 +101,29 @@ local mappingsN = {
 
 	["<LEADER>/"] = { ":set nohlsearch<CR>", "Disable highlight search" },
 
-	["<LEADER>e"] = { ":NvimTreeToggle<cr>", "File explorer" },
+ 	["<LEADER>e"] = { ":NvimTreeToggle<cr>", "File explorer" },
 
-	["<LEADER>h"] = { name = "Help" },
-	["<LEADER>hz"] = { ":WhichKey z<CR>", "Folds/Spelling/Screen motions" },
-	["<LEADER>hg"] = { ":WhichKey g<CR>", "g prefix" },
+	["z"] = { ":WhichKey z<CR>", "Folds/Spelling/Screen motions" },
+	["g"] = { ":WhichKey g<CR>", "Misc" },
+
+	["<LEADER><F5>"] = { 'autocmd FileType python nnoremap <buffer> <leader><F5>\
+						 <ESC>:w<CR>:split<CR>:terminal python3.10 "%"<CR>i', "Run code" },
+
+	["<F3>"] = { ":call vimspector#Stop()<CR>", "Stop debugger" },
+	["<F4>"] = { ":call vimspector#Restart()<CR>", "Restart debugger" },
+	["<F5>"] = { ":call vimspector#Continue()<CR>", "Start/continue debugging" },
+	["<F6>"] = { ":call vimspector#Pause()<CR>", "Pause debugger" },
+	["<F8>"] = { ":call vimspector#AddFunctionBreakpoint()<CR>", "Add function breakpoint (?) (debug)" },
+	["<leader><F8>"] = { ":call vimspector#RunToCursor()<CR>", "Run to cursor (debug)" },
+	["<F9>"] = { ":call vimspector#ToggleBreakpoint()<CR>", "Toggle breakpoint (debug)" },
+	["<leader><F9>"] = { ":call vimspector#ToggleConditionalBreakpoint()<CR>", "Toggle conditional breakpoint (debug)" },
+	["<F10>"] = { ":call vimspector#StepOver()<CR>", "Step over (debug)" },
+	["<F11>"] = { ":call vimspector#StepInto()<CR>", "Step into (debug)" },
+	["<F12>"] = { ":call vimspector#StepOut()<CR>", "Step out (debug)" },
+
+	["<LEADER>d"] = { name = "Debug" },
+ 	["<LEADER>dr"] = { ":call vimspector#Reset()<CR>", "Reset (close) the debugger" },
+
 	--[""] = { "", "" },
 	--[""] = { "", "" },
 	--[""] = { "", "" },
