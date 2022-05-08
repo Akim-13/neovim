@@ -193,6 +193,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/akim/.local/share/nvim/site/pack/packer/start/vimspector",
     url = "https://github.com/puremourning/vimspector"
+  },
+  ["which-key.nvim"] = {
+    loaded = true,
+    path = "/home/akim/.local/share/nvim/site/pack/packer/start/which-key.nvim",
+    url = "https://github.com/folke/which-key.nvim"
   }
 }
 

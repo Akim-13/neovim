@@ -98,6 +98,9 @@ return packer.startup(function(use)
   -- Debugger
   use "puremourning/vimspector"
 
+  -- Pop-up menu to show keymaps
+  use "folke/which-key.nvim"
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

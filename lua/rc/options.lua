@@ -29,7 +29,7 @@ local options = {
 	showtabline = 2,								-- Show the tabline at the top
 	whichwrap = 'h,l',								-- Go to the next/previous line after reaching the end/beginning
 	termguicolors = true,
-	--timeoutlen = 200								-- Shorter delay for some of the key comninations
+	timeoutlen = 300								-- Shorter delay for some of the key comninations
 }
 for k, v in pairs(options) do
 	vim.opt[k] = v

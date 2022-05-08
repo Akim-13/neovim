@@ -11,6 +11,7 @@ if not status_ok then
 end
 
 
+
 -- This colorscheme is an utter mess, half of the options work randomly in
 -- random places. I got no clue what to do about it.
 
