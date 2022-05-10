@@ -104,6 +104,8 @@ return packer.startup(function(use)
   -- Indent line
   use "lukas-reineke/indent-blankline.nvim"
 
+  -- Bottom status bar
+  use 'nvim-lualine/lualine.nvim'
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

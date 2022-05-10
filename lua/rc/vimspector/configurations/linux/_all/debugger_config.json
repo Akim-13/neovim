@@ -15,7 +15,7 @@
         "type": "python",
         "request": "launch",
         "python": "/usr/bin/python3.10",
-		"console": "externalTerminal",
+		"console": "integratedTerminal",
         "stopOnEntry": true,
         "debugOptions": [],
         "program": "${file}"
