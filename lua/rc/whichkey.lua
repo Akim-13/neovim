@@ -4,7 +4,6 @@ if not status_ok then
 end
 
 vim.cmd "hi NormalFloat ctermbg=NONE" -- Make the background of popup window invisible
----- fasdkj
 local setup = {
   plugins = {
     marks = true, -- shows a list of your marks on ' and `
@@ -89,7 +88,6 @@ local optsN = {
   silent = true, -- use `silent` when creating keymaps
   noremap = true, -- use `noremap` when creating keymaps
   nowait = true, -- use `nowait` when creating keymaps
-
 }
 
 local optsV = {
@@ -99,7 +97,6 @@ local optsV = {
   silent = true,
   noremap = true,
   nowait = true,
-
 }
 
 local mappingsN = {
