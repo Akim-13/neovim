@@ -4,7 +4,7 @@ if not status_ok then
 end
 
 vim.cmd "hi NormalFloat ctermbg=NONE" -- Make the background of popup window invisible
-
+---- fasdkj
 local setup = {
   plugins = {
     marks = true, -- shows a list of your marks on ' and `
@@ -30,10 +30,21 @@ local setup = {
   -- operators = { gc = "Comments" },
   key_labels = {
     -- override the label used to display some keys. It doesn't effect WK in any other way.
-    -- For example:
-    -- ["<space>"] = "SPC",
-    -- ["<cr>"] = "RET",
-    -- ["<tab>"] = "TAB",
+	["'"] = "' or `",
+	['"'] = '" or @',
+	["<c-w>"] = "<C-w>",
+	["<C-D>"] = "<C-d>",
+	["<C-Q>"] = "<C-q>",
+	["<C-H>"] = "<C-h>",
+	["<NL>"]  = "<C-j>",
+	["<C-K>"] = "<C-k>",
+	["<C-L>"] = "<C-l>",
+	["<C-N>"] = "<C-n>",
+	["<C-P>"] = "<C-p>",
+	--["+"] = "<SHIFT>=",
+	--["_"] = "<SHIFT>-",
+	--["<C->"] = "<C->",
+	--[""] = "",
   },
   icons = {
     breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
@@ -55,7 +66,7 @@ local setup = {
     height = { min = 4, max = 25 }, -- min and max height of the columns
     width = { min = 20, max = 50 }, -- min and max width of the columns
     spacing = 4, -- spacing between columns
-    align = "left", -- align columns left, center or right
+    align = "center", -- align columns left, center or right
   },
   ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
   hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
@@ -92,37 +103,74 @@ local optsV = {
 }
 
 local mappingsN = {
-	["<LEADER>w"] = { name = "Write" },
-	["<LEADER>ww"] = { ":w<CR>", "Write file" },
-	["<LEADER>ws"] = { ":w<CR>:source %<CR>", "Write and source file (save nvim config)" },
+	-- WhichKey defaults
+	["z"] = { name = "Folds/View/Spelling" },
+	["g"] = { name = "Miscellaneous" },
+	["'"] = { name = "Marks" },
+	['"'] = { name = "Registers" },
+	["`"] = "which_key_ignore",
+	["@"] = "which_key_ignore",
+	["<c-w>"] = { name = "Windows" },
+	["H"] = "which_key_ignore",
+	["L"] = "which_key_ignore",
+	["M"] = "which_key_ignore",
 
-	["<LEADER>o"] = { "mzo<ESC>`z", "Insert new line below" },
-	["<LEADER>O"] = { "mzO<ESC>`z", "Insert new line above" },
+	-- Write
+	["<LEADER>w"] =  { name =				  "Write" },
+	["<LEADER>ws"] = { ":w<CR>:source %<CR>", "Write and source" }, -- To save nvim config
+	["<LEADER>wa"] = { ":wa<CR>",			  "Write all" },
+	["<LEADER>ww"] = { ":w<CR>",			  "Write" },
 
-	["<LEADER>/"] = { ":set nohlsearch<CR>", "Disable highlight search" },
+	-- Exit
+	["Z"] =  { name ="Exit" },
+	["ZZ"] = { "ZZ", "Exit current window" },
+	["ZA"] = { ":wqa<CR>", "Exit all after saving" },
+	["ZQ"] = { "ZQ", "Quit current window without saving" },
+	["ZX"] = { ":conf qall<CR>", "Quit all without saving" },
 
- 	["<LEADER>e"] = { ":NvimTreeToggle<cr>", "File explorer" },
+	["<LEADER>o"] = { "mzo<ESC>`z",			 "鱗Insert new line below" },
+	["<LEADER>O"] = { "mzO<ESC>`z",			 "麟Insert new line above" },
+	["<LEADER>/"] = { ":set nohlsearch<CR>", " Disable highlight search" },
+	-- nvim-tree
+ 	["<LEADER>e"] = { ":NvimTreeToggle<cr>", "פּ Toggle file explorer" },
+	-- From autocmd in keymaps.lua
+	["<LEADER><F5>"] = { "<LEADER><F5>",	 " Run code" },
 
-	["z"] = { ":WhichKey z<CR>", "Folds/Spelling/Screen motions" },
-	["g"] = { ":WhichKey g<CR>", "Misc" },
+	-- Debugging
+	["<LEADER>d"] = { name =												   "Debug" },
+ 	["<LEADER>dq"] = { ":call vimspector#Reset()<CR>",						   " Quit" },
 
-	["<LEADER><F5>"] = { 'autocmd FileType python nnoremap <buffer> <leader><F5>\
-						 <ESC>:w<CR>:split<CR>:terminal python3.10 "%"<CR>i', "Run code" },
+	["<F3>"] = { ":call vimspector#Stop()<CR>",								   "[] ﱢ Stop" },
+	["<F4>"] = { ":call vimspector#Restart()<CR>",							   "[] ﰇ Restart" },
+	["<F5>"] = { ":call vimspector#Continue()<CR>",							   "[]  Start/continue" },
+	["<F6>"] = { ":call vimspector#Pause()<CR>",							   "[]  Pause" },
+	["<F8>"] = { ":call vimspector#AddFunctionBreakpoint()<CR>",			   "[]  Add function breakpoint" },
+	["<LEADER><F8>"] = { ":call vimspector#RunToCursor()<CR>",				   "[]  Run to cursor" },
+	["<F9>"] = { ":call vimspector#ToggleBreakpoint()<CR>",					   "[] ● Toggle breakpoint" },
+	["<LEADER><F9>"] = { ":call vimspector#ToggleConditionalBreakpoint()<CR>", "[] ◆ Toggle conditional breakpoint" },
+	["<F10>"] = { ":call vimspector#StepOver()<CR>",						   "[]  Step over" },
+	["<F11>"] = { ":call vimspector#StepInto()<CR>",						   "[] ﲒ Step into" },
+	["<F12>"] = { ":call vimspector#StepOut()<CR>",							   "[] ﲕ Step out" },
 
-	["<F3>"] = { ":call vimspector#Stop()<CR>", "Stop debugger" },
-	["<F4>"] = { ":call vimspector#Restart()<CR>", "Restart debugger" },
-	["<F5>"] = { ":call vimspector#Continue()<CR>", "Start/continue debugging" },
-	["<F6>"] = { ":call vimspector#Pause()<CR>", "Pause debugger" },
-	["<F8>"] = { ":call vimspector#AddFunctionBreakpoint()<CR>", "Add function breakpoint (?) (debug)" },
-	["<leader><F8>"] = { ":call vimspector#RunToCursor()<CR>", "Run to cursor (debug)" },
-	["<F9>"] = { ":call vimspector#ToggleBreakpoint()<CR>", "Toggle breakpoint (debug)" },
-	["<leader><F9>"] = { ":call vimspector#ToggleConditionalBreakpoint()<CR>", "Toggle conditional breakpoint (debug)" },
-	["<F10>"] = { ":call vimspector#StepOver()<CR>", "Step over (debug)" },
-	["<F11>"] = { ":call vimspector#StepInto()<CR>", "Step into (debug)" },
-	["<F12>"] = { ":call vimspector#StepOut()<CR>", "Step out (debug)" },
+	-- Navigate windows
+	["<C-h>"] = { "<C-w>h", "[◫] ﲑ Focus left" },
+	["<C-j>"] = { "<C-w>j", "[◫] ﲐ Focus bottom" },
+	["<C-k>"] = { "<C-w>k", "[◫] ﲓ Focus top" },
+	["<C-l>"] = { "<C-w>l", "[◫] ﲒ Focus right" },
 
-	["<LEADER>d"] = { name = "Debug" },
- 	["<LEADER>dr"] = { ":call vimspector#Reset()<CR>", "Reset (close) the debugger" },
+	-- Resize windows
+	["+"] = { ":resize +2<CR>",			 "[◫]  Increase height" },
+	["_"] = { ":resize -2<CR>",			 "[◫]  Decrease height" },
+	["="] = { ":vertical resize +2<CR>", "[◫]  Increase width" },
+	["-"] = { ":vertical resize -2<CR>", "[◫]  Decrease width" },
+
+	-- Buffers
+	["<C-b>"] = { name =				   "Buffers" },
+	["<C-b><C-d>"] = { ":w!<CR>:bdel<CR>", "Delete after saving" },
+	["<C-b><C-q>"] = { ":bdel!<CR>",	   "Quit without saving" },
+	["<C-n>"] = { ":bnext<CR>",			   " Next buffer" },
+	["<C-p>"] = { ":bprevious<CR>",		   " Previous buffer" },
+
 
 	--[""] = { "", "" },
 	--[""] = { "", "" },

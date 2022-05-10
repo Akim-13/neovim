@@ -14,8 +14,8 @@
         "name": "Python: Launch",
         "type": "python",
         "request": "launch",
-        "python": "/usr/bin/python",
-		"console": "integratedTerminal",
+        "python": "/usr/bin/python3.10",
+		"console": "externalTerminal",
         "stopOnEntry": true,
         "debugOptions": [],
         "program": "${file}"

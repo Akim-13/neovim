@@ -13,6 +13,7 @@ augroup VimspectorCustom
 augroup END
 ]]
 
+-- Remove the log file from $HOME
+vim.cmd 'autocmd User VimspectorDebugEnded call system("mv ~/.vimspector.log " . $XDG_CACHE_HOME."/vim/")'
 vim.cmd "packadd! vimspector"
-vim.g.vimspector_enable_mappings = "HUMAN"
 vim.g.vimspector_base_dir = "/home/akim/.config/nvim/lua/rc/vimspector"

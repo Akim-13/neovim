@@ -1,7 +1,10 @@
 vim.cmd 'hi colorcolumn ctermbg=0'					-- Make a colorcolumn less obtrusive
 vim.cmd 'hi TSOperator guibg=NONE ctermbg=NONE'
 vim.cmd 'hi SpellBad cterm=underline ctermbg=None'	-- Make bad spelling underlined and red
+
 local options = {
+--  eventignore='TermClose'
+--  textwidth = 79,								    -- Soft wrapping
 	number = true,									-- Absolute line numbers
 	relativenumber = true,							-- Relative line numbers
 	tabstop = 4,									-- Width of the TAB character
@@ -23,14 +26,18 @@ local options = {
 	cursorline = true,								-- Enable highlighting of the current line
 	showcmd = true,									-- Show which keys are being pressed
 	scrolloff = 7,									-- Keep the cursor N lines from the top and the bottom of the screen
+	sidescroll = 0,									-- Keeps the cursor centered when going off the screen
+	sidescrolloff = 4,								-- Number of columns to keep from the edge of the screen
 	ruler = true,									-- Always show cursor position at the bottom right corner [AIRLINE]
-	textwidth = 79,								    -- Soft wrapping
 	syntax = 'off',									-- Enable syntax highlighting
 	showtabline = 2,								-- Show the tabline at the top
 	whichwrap = 'h,l',								-- Go to the next/previous line after reaching the end/beginning
-	termguicolors = true,
-	timeoutlen = 300								-- Shorter delay for some of the key comninations
+	termguicolors = true,							-- More colours
+	timeoutlen = 300,								-- Shorter delay for some of the key comninations
+	undofile = true,								-- Persistent undo history
+	undodir = '/home/akim/.cache/nvim/undo'			-- Undo directory
 }
+
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end
