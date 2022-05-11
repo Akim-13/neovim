@@ -29,26 +29,26 @@ local setup = {
   -- operators = { gc = "Comments" },
   key_labels = {
     -- override the label used to display some keys. It doesn't effect WK in any other way.
-	["'"] = "' or `",
-	['"'] = '" or @',
-	["<c-w>"] = "<C-w>",
-	["<C-D>"] = "<C-d>",
-	["<C-Q>"] = "<C-q>",
-	["<C-H>"] = "<C-h>",
-	["<NL>"]  = "<C-j>",
-	["<C-K>"] = "<C-k>",
-	["<C-L>"] = "<C-l>",
-	["<C-N>"] = "<C-n>",
-	["<C-P>"] = "<C-p>",
-	--["+"] = "<SHIFT>=",
-	--["_"] = "<SHIFT>-",
-	--["<C->"] = "<C->",
-	--[""] = "",
+    ["'"] = "' or `",
+    ['"'] = '" or @',
+    ["<c-w>"] = "<C-w>",
+    ["<C-D>"] = "<C-d>",
+    ["<C-Q>"] = "<C-q>",
+    ["<C-H>"] = "<C-h>",
+    ["<NL>"]  = "<C-j>",
+    ["<C-K>"] = "<C-k>",
+    ["<C-L>"] = "<C-l>",
+    ["<C-N>"] = "<C-n>",
+    ["<C-P>"] = "<C-p>",
+    --["+"] = "<SHIFT>=",
+    --["_"] = "<SHIFT>-",
+    --["<C->"] = "<C->",
+    --[""] = "",
   },
   icons = {
     breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
     separator = "", -- ➜symbol used between a key and it's label
-    group = " ", -- symbol prepended to a group
+    group = "", -- symbol prepended to a group 
   },
   popup_mappings = {
     scroll_down = "<c-d>", -- binding to scroll down inside the popup
@@ -90,109 +90,89 @@ local optsN = {
   nowait = true, -- use `nowait` when creating keymaps
 }
 
-local optsV = {
-  mode = "v", -- Visual mode
-  prefix = "<leader>",
-  buffer = nil,
-  silent = true,
-  noremap = true,
-  nowait = true,
-}
 
 local mappingsN = {
-	-- WhichKey defaults
-	["z"] = { name = "Folds/View/Spelling" },
-	["g"] = { name = "Miscellaneous" },
-	["'"] = { name = "Marks" },
-	['"'] = { name = "Registers" },
-	["`"] = "which_key_ignore",
-	["@"] = "which_key_ignore",
-	["<c-w>"] = { name = "Windows" },
-	["H"] = "which_key_ignore",
-	["L"] = "which_key_ignore",
-	["M"] = "which_key_ignore",
+    -- WhichKey defaults
+    ["H"] = "which_key_ignore",
+    ["L"] = "which_key_ignore",
+    ["M"] = "which_key_ignore",
+    ["`"] = "which_key_ignore",
+    ["@"] = "which_key_ignore",
+    ["'"] = { name = " Marks" },
+    ['"'] = { name = " Registers" },
+    ["z"] = { name = "ﬡ Folds/View/Spelling" },
+    ["g"] = { name = " Miscellaneous" },
 
-	-- Write
-	["<LEADER>w"] =  { name =				  "Write" },
-	["<LEADER>ws"] = { ":w<CR>:source %<CR>", "Write and source" }, -- To save nvim config
-	["<LEADER>wa"] = { ":wa<CR>",			  "Write all" },
-	["<LEADER>ww"] = { ":w<CR>",			  "Write" },
+    -- Write
+    ["<LEADER>w"] =  { name =                 "   Write" },
+    ["<LEADER>ws"] = { ":w<CR>:source %<CR>", " Write and source" }, -- To save nvim config
+    ["<LEADER>wa"] = { ":wa<CR>",             " Write all" },
+    ["<LEADER>ww"] = { ":w<CR>",              " Write" },
 
-	-- Exit
-	["Z"] =  { name ="Exit" },
-	["ZZ"] = { "ZZ", "Exit current window" },
-	["ZA"] = { ":wqa<CR>", "Exit all after saving" },
-	["ZQ"] = { "ZQ", "Quit current window without saving" },
-	["ZX"] = { ":conf qall<CR>", "Quit all without saving" },
+    -- Exit
+    ["Z"] =  { name =" Exit" },
+    ["ZZ"] = { ":confirm x<CR>", " Exit current window" },
+    ["ZA"] = { ":wqa<CR>",       " Exit all after saving" },
+    ["ZQ"] = { "ZQ",             "窱Quit current window without saving" },
+    ["ZX"] = { ":conf qall<CR>", " Quit all without saving" },
 
-	["<LEADER>o"] = { "mzo<ESC>`z",			 "鱗Insert new line below" },
-	["<LEADER>O"] = { "mzO<ESC>`z",			 "麟Insert new line above" },
-	["<LEADER>/"] = { ":set nohlsearch<CR>", " Disable highlight search" },
-	-- nvim-tree
- 	["<LEADER>e"] = { ":NvimTreeToggle<cr>", "פּ Toggle file explorer" },
-	-- From autocmd in keymaps.lua
-	["<LEADER><F5>"] = { "<LEADER><F5>",	 " Run code" },
+    -- Debugging
+    ["<LEADER>d"] = { name =                                                   " Debug" },
+    ["<LEADER>dq"] = { ":call vimspector#Reset()<CR>",                         " Quit" },
+    ["<F3>"] = { ":call vimspector#Stop()<CR>",                                "[] ﱢ Stop" },
+    ["<F4>"] = { ":call vimspector#Restart()<CR>",                             "[]  Restart" },
+    ["<F5>"] = { ":call vimspector#Continue()<CR>",                            "[]  Start/continue" },
+    ["<F6>"] = { ":call vimspector#Pause()<CR>",                               "[]  Pause" },
+    ["<F8>"] = { ":call vimspector#AddFunctionBreakpoint()<CR>",               "[]  Add function breakpoint" },
+    ["<LEADER><F8>"] = { ":call vimspector#RunToCursor()<CR>",                 "[]  Run to cursor" },
+    ["<F9>"] = { ":call vimspector#ToggleBreakpoint()<CR>",                    "[] ● Toggle breakpoint" },
+    ["<LEADER><F9>"] = { ":call vimspector#ToggleConditionalBreakpoint()<CR>", "[] ◆ Toggle conditional breakpoint" },
+    ["<F10>"] = { ":call vimspector#StepOver()<CR>",                           "[]  Step over" },
+    ["<F11>"] = { ":call vimspector#StepInto()<CR>",                           "[]  Step into" },
+    ["<F12>"] = { ":call vimspector#StepOut()<CR>",                            "[]  Step out" },
 
-	-- Debugging
-	["<LEADER>d"] = { name =												   "Debug" },
- 	["<LEADER>dq"] = { ":call vimspector#Reset()<CR>",						   " Quit" },
+    -- Windows
+    ["<c-w>"] = { name =                 " Windows" },
+    ["<C-h>"] = { "<C-w>h",              "[] ﲑ Focus left" },
+    ["<C-j>"] = { "<C-w>j",              "[] ﲐ Focus bottom" },
+    ["<C-k>"] = { "<C-w>k",              "[] ﲓ Focus top" },
+    ["<C-l>"] = { "<C-w>l",              "[] ﲒ Focus right" },
+    ["+"] = { ":resize +2<CR>",          "[]  Increase height" },
+    ["_"] = { ":resize -2<CR>",          "[]  Decrease height" },
+    ["="] = { ":vertical resize +2<CR>", "[]  Increase width" },
+    ["-"] = { ":vertical resize -2<CR>", "[]  Decrease width" },
 
-	["<F3>"] = { ":call vimspector#Stop()<CR>",								   "[] ﱢ Stop" },
-	["<F4>"] = { ":call vimspector#Restart()<CR>",							   "[] ﰇ Restart" },
-	["<F5>"] = { ":call vimspector#Continue()<CR>",							   "[]  Start/continue" },
-	["<F6>"] = { ":call vimspector#Pause()<CR>",							   "[]  Pause" },
-	["<F8>"] = { ":call vimspector#AddFunctionBreakpoint()<CR>",			   "[]  Add function breakpoint" },
-	["<LEADER><F8>"] = { ":call vimspector#RunToCursor()<CR>",				   "[]  Run to cursor" },
-	["<F9>"] = { ":call vimspector#ToggleBreakpoint()<CR>",					   "[] ● Toggle breakpoint" },
-	["<LEADER><F9>"] = { ":call vimspector#ToggleConditionalBreakpoint()<CR>", "[] ◆ Toggle conditional breakpoint" },
-	["<F10>"] = { ":call vimspector#StepOver()<CR>",						   "[]  Step over" },
-	["<F11>"] = { ":call vimspector#StepInto()<CR>",						   "[] ﲒ Step into" },
-	["<F12>"] = { ":call vimspector#StepOut()<CR>",							   "[] ﲕ Step out" },
+    -- Buffers
+    ["<C-b>"] = { name =                   "ﴵ Buffers" },
+    ["<C-b><C-d>"] = { ":w!<CR>:bdel<CR>", " Delete after saving" },
+    ["<C-b><C-q>"] = { ":bdel!<CR>",       "﫧Quit without saving" },
+    ["<C-n>"] = { ":bnext<CR>",            " Next buffer" },
+    ["<C-p>"] = { ":bprevious<CR>",        " Previous buffer" },
 
-	-- Navigate windows
-	["<C-h>"] = { "<C-w>h", "[◫] ﲑ Focus left" },
-	["<C-j>"] = { "<C-w>j", "[◫] ﲐ Focus bottom" },
-	["<C-k>"] = { "<C-w>k", "[◫] ﲓ Focus top" },
-	["<C-l>"] = { "<C-w>l", "[◫] ﲒ Focus right" },
+    -- Commands
+    ["<LEADER>c"] = { name =                                    " Commands" },
+    ["<LEADER>ch"] = { ':call <SNR>6_ShowHelp("")<left><left>', " Help", silent = false },
+    ["<LEADER>cs"] = { ":%s/",                                  "﯒ Substitute", silent = false },
+    ["<LEADER>cS"] = { ":%s/\\<\\><left><left>",                "﯒ Exact substitution", silent = false },
+    ["<LEADER>ce"] = { "/\\<\\><left><left>",                   " Exact search", silent = false },
 
-	-- Resize windows
-	["+"] = { ":resize +2<CR>",			 "[◫]  Increase height" },
-	["_"] = { ":resize -2<CR>",			 "[◫]  Decrease height" },
-	["="] = { ":vertical resize +2<CR>", "[◫]  Increase width" },
-	["-"] = { ":vertical resize -2<CR>", "[◫]  Decrease width" },
+    -- Nvim-tree
+    ["<LEADER>e"] = { ":NvimTreeToggle<cr>", "פּ Toggle file explorer" },
+    -- From autocmd in keymaps.lua
+    ["<LEADER><F5>"] = { "<LEADER><F5>",     " Run code" },
+    ["<LEADER>o"] = { "mzo<ESC>`z",          "鱗Insert new line below" },
+    ["<LEADER>O"] = { "mzO<ESC>`z",          "麟Insert new line above" },
+    ["<LEADER>/"] = { ":set nohlsearch<CR>", " Disable highlight search" },
+    ["<LEADER>C"] = { ":mod<CR>",            " Clear command bar" },
 
-	-- Buffers
-	["<C-b>"] = { name =				   "Buffers" },
-	["<C-b><C-d>"] = { ":w!<CR>:bdel<CR>", "Delete after saving" },
-	["<C-b><C-q>"] = { ":bdel!<CR>",	   "Quit without saving" },
-	["<C-n>"] = { ":bnext<CR>",			   " Next buffer" },
-	["<C-p>"] = { ":bprevious<CR>",		   " Previous buffer" },
+    --[""] = { "", "" },
+    --[""] = { "", "" },
+    --[""] = { "", "" },
+    --[""] = { "", "" },
+    --[""] = { "", "" },
 
-
-	--[""] = { "", "" },
-	--[""] = { "", "" },
-	--[""] = { "", "" },
-	--[""] = { "", "" },
-	--[""] = { "", "" },
-
-
---  ["f"] = {
---    "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
---    "Find files",
---  },
---  ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
---
---  s = {
---    name = "Search",
---    b = { "<cmd>Telescope git_branches<cr>", "Checkout branch" },
---    c = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
---    h = { "<cmd>Telescope help_tags<cr>", "Find Help" },
---    M = { "<cmd>Telescope man_pages<cr>", "Man Pages" },
---    r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
---    R = { "<cmd>Telescope registers<cr>", "Registers" },
---    k = { "<cmd>Telescope keymaps<cr>", "Keymaps" },
---    C = { "<cmd>Telescope commands<cr>", "Commands" },
---  },
+    -- More keymaps here:
+    -- https://github.com/LunarVim/Neovim-from-scratch/commit/91e22c4076ae58cec23ac5a9b2ea7181dd8f988a
 }
 
 which_key.setup(setup)
