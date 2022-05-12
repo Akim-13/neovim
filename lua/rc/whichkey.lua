@@ -5,80 +5,101 @@ end
 
 vim.cmd "hi NormalFloat ctermbg=NONE" -- Make the background of popup window invisible
 local setup = {
-  plugins = {
-    marks = true, -- shows a list of your marks on ' and `
-    registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
-    spelling = {
-      enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-      suggestions = 20, -- how many suggestions should be shown in the list?
-    },
-    -- the presets plugin, adds help for a bunch of default keybindings in Neovim
-    -- No actual key bindings are created
-    presets = {
-      operators = false, -- adds help for operators like d, y, ... and registers them for motion / text object completion
-      motions = false, -- adds help for motions
-      text_objects = false, -- help for text objects triggered after entering an operator
-      windows = true, -- default bindings on <c-w>
-      nav = true, -- misc bindings to work with windows
-      z = true, -- bindings for folds, spelling and others prefixed with z
-      g = true, -- bindings for prefixed with g
-    },
-  },
-  -- add operators that will trigger motion and text object completion
-  -- to enable all native operators, set the preset / operators plugin above
-  -- operators = { gc = "Comments" },
-  key_labels = {
-    -- override the label used to display some keys. It doesn't effect WK in any other way.
-    ["'"] = "' or `",
-    ['"'] = '" or @',
-    ["<c-w>"] = "<C-w>",
-    ["<C-D>"] = "<C-d>",
-    ["<C-Q>"] = "<C-q>",
-    ["<C-H>"] = "<C-h>",
-    ["<NL>"]  = "<C-j>",
-    ["<C-K>"] = "<C-k>",
-    ["<C-L>"] = "<C-l>",
-    ["<C-N>"] = "<C-n>",
-    ["<C-P>"] = "<C-p>",
-    --["+"] = "<SHIFT>=",
-    --["_"] = "<SHIFT>-",
-    --["<C->"] = "<C->",
-    --[""] = "",
-  },
-  icons = {
-    breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
-    separator = "", -- ➜symbol used between a key and it's label
-    group = "", -- symbol prepended to a group 
-  },
-  popup_mappings = {
-    scroll_down = "<c-d>", -- binding to scroll down inside the popup
-    scroll_up = "<c-u>", -- binding to scroll up inside the popup
-  },
-  window = {
-    border = "single", -- none, single, double, shadow, rounded
-    position = "bottom", -- bottom, top
-    margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
-    padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
-    winblend = 0,
-  },
-  layout = {
-    height = { min = 4, max = 25 }, -- min and max height of the columns
-    width = { min = 20, max = 50 }, -- min and max width of the columns
-    spacing = 4, -- spacing between columns
-    align = "center", -- align columns left, center or right
-  },
-  ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
-  hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
-  show_help = true, -- show help message on the command line when the popup is visible
-  triggers = "auto", -- automatically setup triggers
-  -- triggers = {"<leader>"} -- or specify a list manually
-  triggers_blacklist = {
-    -- list of mode / prefixes that should never be hooked by WhichKey
-    -- this is mostly relevant for key maps that start with a native binding
-    -- most people should not need to change this
-    i = { "j", "k" },
-    v = { "j", "k" },
-  },
+    plugins = {
+        marks = true, -- shows a list of your marks on ' and `
+        registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
+        spelling = {
+          enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+          suggestions = 20, -- how many suggestions should be shown in the list?
+        },
+        -- the presets plugin, adds help for a bunch of default keybindings in Neovim
+        -- No actual key bindings are created
+        presets = {
+          operators = false, -- adds help for operators like d, y, ... and registers them for motion / text object completion
+          motions = false, -- adds help for motions
+          text_objects = false, -- help for text objects triggered after entering an operator
+          windows = true, -- default bindings on <c-w>
+          nav = true, -- misc bindings to work with windows
+          z = true, -- bindings for folds, spelling and others prefixed with z
+          g = true, -- bindings for prefixed with g
+        },
+      },
+      -- add operators that will trigger motion and text object completion
+      -- to enable all native operators, set the preset / operators plugin above
+      -- operators = { gc = "Comments" },
+      key_labels = {
+        -- override the label used to display some keys. It doesn't effect WK in any other way.
+        ["<C-A>"] = "<C-a>",
+        ["<C-B>"] = "<C-b>",
+        ["<C-C>"] = "<C-c>",
+        ["<C-D>"] = "<C-d>",
+        ["<C-E>"] = "<C-e>",
+        ["<C-F>"] = "<C-f>",
+        ["<C-G>"] = "<C-g>",
+        ["<C-H>"] = "<C-h>",
+        ["<C-I>"] = "<C-i>",
+        ["<C-J>"] = "<C-j>",
+        ["<C-K>"] = "<C-k>",
+        ["<C-L>"] = "<C-l>",
+        ["<C-M>"] = "<C-m>",
+        ["<C-N>"] = "<C-n>",
+        ["<C-O>"] = "<C-o>",
+        ["<C-P>"] = "<C-p>",
+        ["<C-Q>"] = "<C-q>",
+        ["<C-R>"] = "<C-r>",
+        ["<C-S>"] = "<C-s>",
+        ["<C-T>"] = "<C-t>",
+        ["<C-U>"] = "<C-u>",
+        ["<C-V>"] = "<C-v>",
+        ["<C-W>"] = "<C-w>",
+        ["<C-X>"] = "<C-x>",
+        ["<C-Y>"] = "<C-y>",
+        ["<C-Z>"] = "<C-z>",
+
+        ["'"] = "' or `",
+        ['"'] = '" or @',
+        ["<c-w>"] = "<C-w>",
+        ["<NL>"]  = "<C-j>",
+
+        --["+"] = "<SHIFT>=",
+        --["_"] = "<SHIFT>-",
+        --["<C->"] = "<C->",
+        --[""] = "",
+      },
+      icons = {
+        breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
+        separator = "", -- ➜symbol used between a key and it's label
+        group = "", -- symbol prepended to a group 
+      },
+      popup_mappings = {
+        scroll_down = "J", -- binding to scroll down inside the popup
+        scroll_up = "K", -- binding to scroll up inside the popup
+      },
+      window = {
+        border = "single", -- none, single, double, shadow, rounded
+        position = "bottom", -- bottom, top
+        margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
+        padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
+        winblend = 0,
+      },
+      layout = {
+        height = { min = 4, max = 25 }, -- min and max height of the columns
+        width = { min = 20, max = 50 }, -- min and max width of the columns
+        spacing = 4, -- spacing between columns
+        align = "center", -- align columns left, center or right
+      },
+      ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
+      hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
+      show_help = true, -- show help message on the command line when the popup is visible
+      triggers = "auto", -- automatically setup triggers
+      --triggers = {"<C-;>", "<leader>"}, -- or specify a list manually
+      triggers_blacklist = {
+        -- list of mode / prefixes that should never be hooked by WhichKey
+        -- this is mostly relevant for key maps that start with a native binding
+        -- most people should not need to change this
+        i = { "j", "k" },
+        v = { "j", "k" },
+      },
 }
 
 local optsN = {
@@ -104,7 +125,7 @@ local mappingsN = {
     ["g"] = { name = " Miscellaneous" },
 
     -- Write
-    ["<LEADER>w"] =  { name =                 "   Write" },
+    ["<LEADER>w"] =  { name =                 " Write" },
     ["<LEADER>ws"] = { ":w<CR>:source %<CR>", " Write and source" }, -- To save nvim config
     ["<LEADER>wa"] = { ":wa<CR>",             " Write all" },
     ["<LEADER>ww"] = { ":w<CR>",              " Write" },
@@ -165,11 +186,25 @@ local mappingsN = {
     ["<LEADER>/"] = { ":set nohlsearch<CR>", " Disable highlight search" },
     ["<LEADER>C"] = { ":mod<CR>",            " Clear command bar" },
 
-    --[""] = { "", "" },
-    --[""] = { "", "" },
-    --[""] = { "", "" },
-    --[""] = { "", "" },
-    --[""] = { "", "" },
+    ["<C-o>"] = { "<C-o>", " Go back in jumplist" },
+    ["<C-i>"] = { "<C-j>", " Go forward in jumplist" },
+
+    -- INSERT MODE
+    ["<LEADER>i"] = { name = " INSERT MODE" },
+    ["<LEADER>i<C-t>"] = { "i<C-t>", " Indent by 4 spaces" },
+    ["<LEADER>i<C-d>"] = { "i<C-d>", " Unindent by 4 spaces" },
+    ["<LEADER>i<C-Space>"] = { "i",  " Show this pop-up in INSERT MODE" },
+    -- Use hjkl with control
+    ["<C-h>"] = { "<C-o>h", "", mode = "i" },
+    ["<C-j>"] = { "<C-o>j", "", mode = "i" },
+    ["<C-k>"] = { "<C-o>k", "", mode = "i" },
+    ["<C-l>"] = { "<C-o>l", "", mode = "i" },
+
+    --[""] = { "", " " },
+    --[""] = { "", "" },
+    --[""] = { "", "" },
+    --[""] = { "", "" },
+    --[""] = { "", "" },
 
     -- More keymaps here:
     -- https://github.com/LunarVim/Neovim-from-scratch/commit/91e22c4076ae58cec23ac5a9b2ea7181dd8f988a

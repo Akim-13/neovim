@@ -43,9 +43,9 @@ packer.init {
 return packer.startup(function(use)
 
   -- Basic stuff
-  use "wbthomason/packer.nvim"			-- Have packer manage itself
-  use "nvim-lua/popup.nvim"				-- An implementation of the Popup API from vim in Neovim
-  use "nvim-lua/plenary.nvim"			-- Useful lua functions used by lots of plugins
+  use "wbthomason/packer.nvim"          -- Have packer manage itself
+  use "nvim-lua/popup.nvim"             -- An implementation of the Popup API from vim in Neovim
+  use "nvim-lua/plenary.nvim"           -- Useful lua functions used by lots of plugins
 
   -- Colourscheme
   use "ellisonleao/gruvbox.nvim"
@@ -57,17 +57,17 @@ return packer.startup(function(use)
   --use 'luisiacc/gruvbox-baby'
 
   -- Completion
-  use "hrsh7th/nvim-cmp"				-- The completion plugin
-  use "hrsh7th/cmp-buffer"				-- Buffer completions
-  use "hrsh7th/cmp-path"				-- Path completions
-  use "hrsh7th/cmp-cmdline"				-- Cmdline completions
-  use "saadparwaiz1/cmp_luasnip"		-- Snippet completions
+  use "hrsh7th/nvim-cmp"                -- The completion plugin
+  use "hrsh7th/cmp-buffer"              -- Buffer completions
+  use "hrsh7th/cmp-path"                -- Path completions
+  use "hrsh7th/cmp-cmdline"             -- Cmdline completions
+  use "saadparwaiz1/cmp_luasnip"        -- Snippet completions
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-nvim-lua"
 
   -- Snippets
-  use "L3MON4D3/LuaSnip"				-- Snippet engine
-  use "rafamadriz/friendly-snippets"	-- A bunch of snippets to use
+  use "L3MON4D3/LuaSnip"                -- Snippet engine
+  use "rafamadriz/friendly-snippets"    -- A bunch of snippets to use
 
   -- LSP
   use "neovim/nvim-lspconfig" -- enable LSP
@@ -84,7 +84,7 @@ return packer.startup(function(use)
   use "p00f/nvim-ts-rainbow"
 
   -- Autopairs
-  use "windwp/nvim-autopairs"			-- Integrates with both cmp and treesitter
+  use "windwp/nvim-autopairs"           -- Integrates with both cmp and treesitter
 
   -- Tree on the left
   use 'kyazdani42/nvim-web-devicons'

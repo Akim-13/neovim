@@ -16,13 +16,15 @@ vim.g.maplocalleader = " "
 
 -- NORMAL --
 -- Enable highlight search when searching
-keymap("n", "/", ":set hlsearch<CR>/", {noremap = true})
-keymap("n", "?", ":set hlsearch<CR>?", {noremap = true})
+keymap("n", "/", ":set hlsearch<CR>/", {silent = false, noremap = true})
+keymap("n", "?", ":set hlsearch<CR>?", {silent = false, noremap = true})
 
 -- Center the search results
 keymap("n", "n", "nzz", opts)
 keymap("n", "N", "Nzz", opts)
 
+-- Enter command line window
+keymap("n", ":", ":<C-f>i", opts)
 
 -- VISUAL --
 -- Stay in indent mode
@@ -42,6 +44,9 @@ vim.cmd 'autocmd FileType c nnoremap <buffer> <leader><F5> <ESC>:w<CR>:split<CR>
 vim.cmd 'autocmd FileType markdown nnoremap <silent> <buffer> gf %:let f=expand("<cfile>")<CR>:exe("e ".f).".md"<CR>'
 vim.cmd 'autocmd FileType markdown nnoremap <silent> <buffer> gsf %:let f=expand("<cfile>")<CR>:exe("vs ".f).".md"<CR>'
 
-
+--
 -- WhichKey
+-- All keymaps
 keymap("n", "<LEADER><BS>", ":WhichKey<CR>", opts)
+-- Insert mode keymaps
+keymap("i", "<C-Space>", "<C-o>:WhichKey<CR><leader>i", opts)

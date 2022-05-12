@@ -68,7 +68,6 @@ function! s:ShowHelp(tag) abort
 endfunction
 command! -nargs=1 H call s:ShowHelp(<f-args>)
 ]]
-
 -- Always open help as a vertical split
 --vim.cmd [[
 --augroup vimrc_help
