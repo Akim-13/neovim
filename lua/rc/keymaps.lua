@@ -26,6 +26,10 @@ keymap("n", "N", "Nzz", opts)
 -- Enter command line window
 keymap("n", ":", ":<C-f>i", opts)
 
+-- Smooth scrolling xD (:h 'scroll-smooth')
+keymap("n", "<C-u>", "<C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>", opts)
+keymap("n", "<C-d>", "<C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>", opts)
+
 -- VISUAL --
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
@@ -50,3 +54,5 @@ vim.cmd 'autocmd FileType markdown nnoremap <silent> <buffer> gsf %:let f=expand
 keymap("n", "<LEADER><BS>", ":WhichKey<CR>", opts)
 -- Insert mode keymaps
 keymap("i", "<C-Space>", "<C-o>:WhichKey<CR><leader>i", opts)
+
+
