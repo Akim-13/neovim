@@ -102,8 +102,10 @@ local setup = {
       },
 }
 
-local optsN = {
-  mode = "n", -- NORMAL mode
+-- Horrible (but at least straightforward) solution
+-- NORMAL MODE
+local nOpts = {
+  mode = "n", 
   prefix = "",
   buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
   silent = true, -- use `silent` when creating keymaps
@@ -111,12 +113,94 @@ local optsN = {
   nowait = true, -- use `nowait` when creating keymaps
 }
 
+-- INSERT MODE
+local iOpts = {
+  mode = "i",
+  prefix = "",
+  buffer = nil,
+  silent = true,
+  noremap = true,
+  nowait = true,
+}
 
-local mappingsN = {
+-- VISUAL MODE
+local vOpts = {
+  mode = "v",
+  prefix = "",
+  buffer = nil,
+  silent = true,
+  noremap = true,
+  nowait = true,
+}
+
+-- VISUAL BLOCK MODE
+local xOpts = {
+  mode = "x",
+  prefix = "",
+  buffer = nil,
+  silent = true,
+  noremap = true,
+  nowait = true,
+}
+
+-- TERMINAL MODE
+local tOpts = {
+  mode = "t",
+  prefix = "",
+  buffer = nil,
+  silent = true,
+  noremap = true,
+  nowait = true,
+}
+
+-- COMMAND LINE MODE
+local cOpts = {
+  mode = "c",
+  prefix = "",
+  buffer = nil,
+  silent = true,
+  noremap = true,
+  nowait = true,
+}
+
+local iMaps = {
+    -- Use hjkl with control
+    ["<C-h>"] = { "<C-o>h", ""},
+    ["<C-j>"] = { "<C-o>j", ""},
+    ["<C-k>"] = { "<C-o>k", ""},
+    ["<C-l>"] = { "<C-o>l", ""},
+}
+
+local vMaps = {
+}
+
+local xMaps = {
+}
+
+local tMaps = {
+}
+
+local cMaps = {
+}
+
+local nMaps = {
+    -- INSERT MODE
+    -- The reason these mappings aren't in iMaps is that I 
+    -- can't find a way to triger WhichKey in insert mode.
+    ["<LEADER>i"] = { name = " INSERT MODE" },
+    ["<LEADER>i<C-t>"] = { "i<C-t>", " Indent right" },
+    ["<LEADER>i<C-d>"] = { "i<C-d>", " Indent left" },
+    ["<LEADER>i<C-Space>"] = { "i",  " Show this pop-up in INSERT MODE" },
+    -- Duplicated from iMaps, so that I could give a description.
+    ["<LEADER>i<C-h>"] = { "i<C-o>h", " Move left"},
+    ["<LEADER>i<C-j>"] = { "i<C-o>j", " Move down"},
+    ["<LEADER>i<C-k>"] = { "i<C-o>k", " Move up"},
+    ["<LEADER>i<C-l>"] = { "i<C-o>l", " Move right"},
+
     -- WhichKey defaults
-    ["H"] = "which_key_ignore",
-    ["L"] = "which_key_ignore",
-    ["M"] = "which_key_ignore",
+    ["H"] = "which_key_ignore",     -- Doesn't work until this file is sourced
+    ["L"] = "which_key_ignore",     -- Doesn't work until this file is sourced
+    ["M"] = "which_key_ignore",     -- Doesn't work until this file is sourced
     ["`"] = "which_key_ignore",
     ["@"] = "which_key_ignore",
     ["'"] = { name = " Marks" },
@@ -186,19 +270,11 @@ local mappingsN = {
     ["<LEADER>/"] = { ":set nohlsearch<CR>", " Disable highlight search" },
     ["<LEADER>C"] = { ":mod<CR>",            " Clear command bar" },
 
-    ["<C-o>"] = { "<C-o>", " Go back in jumplist" },
-    ["<C-i>"] = { "<C-j>", " Go forward in jumplist" },
+    -- Jumps
+    ["<C-o>"] = { "<C-o>", " Go back in jump list" },
+    ["<C-i>"] = { "<C-j>", " Go forward in jump list" },
+    ["<LEADER><C-j>"] = { ":jumps<CR>", " Jump list" },
 
-    -- INSERT MODE
-    ["<LEADER>i"] = { name = " INSERT MODE" },
-    ["<LEADER>i<C-t>"] = { "i<C-t>", " Indent by 4 spaces" },
-    ["<LEADER>i<C-d>"] = { "i<C-d>", " Unindent by 4 spaces" },
-    ["<LEADER>i<C-Space>"] = { "i",  " Show this pop-up in INSERT MODE" },
-    -- Use hjkl with control
-    ["<C-h>"] = { "<C-o>h", "", mode = "i" },
-    ["<C-j>"] = { "<C-o>j", "", mode = "i" },
-    ["<C-k>"] = { "<C-o>k", "", mode = "i" },
-    ["<C-l>"] = { "<C-o>l", "", mode = "i" },
 
     --[""] = { "", " " },
     --[""] = { "", "" },
@@ -211,4 +287,5 @@ local mappingsN = {
 }
 
 which_key.setup(setup)
-which_key.register(mappingsN, optsN)
+which_key.register(nMaps, nOpts)
+which_key.register(iMaps, iOpts)
