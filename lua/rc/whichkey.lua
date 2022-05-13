@@ -275,9 +275,11 @@ local nMaps = {
     ["<C-i>"] = { "<C-j>", " Go forward in jump list" },
     ["<LEADER><C-j>"] = { ":jumps<CR>", " Jump list" },
 
+    -- UndoTree
+    ["<LEADER>u"] = { ":UndotreeToggle<CR><C-w>w", "碑Undo history" },
 
     --[""] = { "", " " },
-    --[""] = { "", "" },
+    --[""] = { "", " " },
     --[""] = { "", "" },
     --[""] = { "", "" },
     --[""] = { "", "" },

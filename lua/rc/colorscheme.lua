@@ -22,9 +22,9 @@ end
 --vim.cmd "let g:gruvbox_italicize_comments='1'"
 --vim.cmd "let g:gruvbox_invert_selection='0'"
 --vim.cmd "let g:gruvbox_background='dark'"
---vim.cmd 'hi Normal ctermbg=234 guibg=#1d2021'			-- Make the background transparent (for a translucent terminal)
---vim.cmd 'hi colorcolumn ctermbg=NONE'					-- Make a colorcolumn less obtrusive
---vim.cmd 'hi SpellBad cterm=underline ctermbg=None'	-- Make bad spelling underlined
+--vim.cmd 'hi Normal ctermbg=234 guibg=#1d2021'         -- Make the background transparent (for a translucent terminal)
+--vim.cmd 'hi colorcolumn ctermbg=NONE'                 -- Make a colorcolumn less obtrusive
+--vim.cmd 'hi SpellBad cterm=underline ctermbg=None'    -- Make bad spelling underlined
 --vim.cmd 'hi TSOperator guibg=NONE ctermbg=NONE'
 --vim.cmd "let g:gruvbox_invert_selection='0'"
 --vim.cmd "let g:gruvbox_contrast_dark='hard'"
