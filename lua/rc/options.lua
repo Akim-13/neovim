@@ -59,19 +59,24 @@ vim.cmd 'autocmd FileType markdown set spell'
 -- Open help either vertically or horizontally depending on the window size
 vim.cmd [[
 function! s:ShowHelp(tag) abort
-  if winheight('%') < winwidth('%')
-    execute 'vertical help '.a:tag
-  else
-    execute 'help '.a:tag
-  endif
-  execute 'redraw'
+    if winheight('%') < winwidth('%')
+        execute 'vertical help '.a:tag
+    else
+        execute 'help '.a:tag
+    endif
+    execute 'redraw'
 endfunction
 command! -nargs=1 H call s:ShowHelp(<f-args>)
 ]]
+
 -- Always open help as a vertical split
---vim.cmd [[
---augroup vimrc_help
---    autocmd!
---    autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
---augroup END
---]]
+-- https://github.com/akim-13/neovim/blob/43632b8f0f801fc382920684c121f5fd43daf5a0/lua/rc/options.lua#L71-L77
+
+-- Make folds persistent
+vim.cmd [[
+augroup AutoSaveFolds
+    autocmd!
+    autocmd BufWinLeave * mkview
+    autocmd BufWinEnter * silent loadview
+augroup END
+]]
