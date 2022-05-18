@@ -74,9 +74,9 @@ command! -nargs=1 H call s:ShowHelp(<f-args>)
 
 -- Make folds persistent
 vim.cmd [[
-augroup AutoSaveFolds
-    autocmd!
-    autocmd BufWinLeave * mkview
-    autocmd BufWinEnter * silent loadview
+augroup remember_folds
+  autocmd!
+  au BufWinLeave ?* mkview 1
+  au BufWinEnter ?* silent! loadview 1
 augroup END
 ]]

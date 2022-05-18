@@ -51,5 +51,3 @@ vim.cmd 'autocmd FileType markdown nnoremap <silent> <buffer> gsf %:let f=expand
 keymap("n", "<LEADER><BS>", ":WhichKey<CR>", opts)
 -- Insert mode keymaps
 keymap("i", "<C-Space>", "<C-o>:WhichKey<CR><leader>i", opts)
-
-
