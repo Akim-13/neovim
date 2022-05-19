@@ -144,6 +144,11 @@ _G.packer_plugins = {
     path = "/home/akim/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
     url = "https://github.com/norcalli/nvim-colorizer.lua"
   },
+  ["nvim-keymap-amend"] = {
+    loaded = true,
+    path = "/home/akim/.local/share/nvim/site/pack/packer/start/nvim-keymap-amend",
+    url = "https://github.com/anuvyklack/nvim-keymap-amend"
+  },
   ["nvim-lsp-installer"] = {
     loaded = true,
     path = "/home/akim/.local/share/nvim/site/pack/packer/start/nvim-lsp-installer",

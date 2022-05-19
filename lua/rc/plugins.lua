@@ -106,6 +106,8 @@ return packer.startup(function(use)
 
     -- Pretty folds
     use 'anuvyklack/pretty-fold.nvim'
+    -- Folds preview
+    use 'anuvyklack/nvim-keymap-amend'
 
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then
