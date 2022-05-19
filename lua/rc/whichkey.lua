@@ -4,6 +4,7 @@ if not status_ok then
 end
 
 vim.cmd "hi NormalFloat ctermbg=NONE" -- Make the background of popup window invisible
+
 local setup = {
     plugins = {
         marks = true, -- shows a list of your marks on ' and `

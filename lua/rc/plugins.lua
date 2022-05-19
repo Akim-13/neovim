@@ -46,15 +46,6 @@ return packer.startup(function(use)
     use "nvim-lua/popup.nvim"             -- An implementation of the Popup API from vim in Neovim
     use "nvim-lua/plenary.nvim"           -- Useful lua functions used by lots of plugins
 
-    -- Colourscheme
-    use "ellisonleao/gruvbox.nvim"
-    --use 'marko-cerovac/material.nvim'
-    --use { "briones-gabriel/darcula-solid.nvim", requires = "rktjmp/lush.nvim" }
-    --use "morhetz/gruvbox"
-    --use "ellisonleao/gruvbox.nvim"
-    --use "sainnhe/sonokai"
-    --use 'luisiacc/gruvbox-baby'
-
     -- Completion
     use "hrsh7th/nvim-cmp"                -- The completion plugin
     use "hrsh7th/cmp-buffer"              -- Buffer completions
@@ -63,6 +54,9 @@ return packer.startup(function(use)
     use "saadparwaiz1/cmp_luasnip"        -- Snippet completions
     use "hrsh7th/cmp-nvim-lsp"
     use "hrsh7th/cmp-nvim-lua"
+
+    -- Colourscheme
+    use "ellisonleao/gruvbox.nvim"
 
     -- Snippets
     use "L3MON4D3/LuaSnip"                -- Snippet engine
@@ -109,6 +103,9 @@ return packer.startup(function(use)
 
     -- Undo history
     use 'mbbill/undotree'
+
+    -- Pretty folds
+    use 'anuvyklack/pretty-fold.nvim'
 
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then

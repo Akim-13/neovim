@@ -189,6 +189,11 @@ _G.packer_plugins = {
     path = "/home/akim/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
+  ["pretty-fold.nvim"] = {
+    loaded = true,
+    path = "/home/akim/.local/share/nvim/site/pack/packer/start/pretty-fold.nvim",
+    url = "https://github.com/anuvyklack/pretty-fold.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/akim/.local/share/nvim/site/pack/packer/start/telescope.nvim",
