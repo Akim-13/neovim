@@ -45,10 +45,10 @@ vim.opt.clipboard:append('unnamedplus')             -- Link yank buffer with sys
 vim.opt.iskeyword:append('-')                       -- Treat 'example-word' as one word, i.e. `dw` will delete the whole thing
 vim.opt.isfname:append('32')                        -- Treat spaces as delimeters. Helps gf to go to a filename containing a space
 vim.opt.formatoptions:remove('cro')                 -- Stop newline continuation of comments
-
 vim.cmd 'set t_kb=^?'
---vim.cmd 'set t_Co=256'
---vim.cmd 'filetype plugin indent on'
+
+
+-- AUTOCOMMANDS --
 -- Change tabs to spaces every time buffer is written
 vim.cmd 'autocmd BufWrite * retab'
 -- Save markdown file after each change
@@ -68,9 +68,14 @@ function! s:ShowHelp(tag) abort
 endfunction
 command! -nargs=1 H call s:ShowHelp(<f-args>)
 ]]
-
 -- Always open help as a vertical split
 -- https://github.com/akim-13/neovim/blob/43632b8f0f801fc382920684c121f5fd43daf5a0/lua/rc/options.lua#L71-L77
+
+-- Disable completion in the command line window
+vim.cmd [[
+autocmd CmdWinEnter * lua require('cmp').setup({enabled = false})
+autocmd CmdWinLeave * lua require('cmp').setup({enabled = true})
+]]
 
 -- Make folds persistent
 vim.cmd [[
@@ -79,4 +84,5 @@ augroup remember_folds
   au BufWinLeave ?* mkview 1
   au BufWinEnter ?* silent! loadview 1
 augroup END
+
 ]]
