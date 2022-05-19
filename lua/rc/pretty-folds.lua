@@ -3,10 +3,12 @@ if not status_ok then
     return
 end
 
+vim.cmd 'hi Folded guibg=NONE'
+
 local setup = {
     sections = {
         left = {
-            'content',
+            ' ','content',
         },
         right = {
             ' ', 'number_of_folded_lines', ': ', 'percentage', ' ',
@@ -14,9 +16,9 @@ local setup = {
         }
     },
 
-    fill_char = '━',
+    fill_char = '―',
 
-    remove_fold_markers = false,
+    remove_fold_markers = true,
 
     -- Keep the indentation of the content of the fold string.
     keep_indentation = true,

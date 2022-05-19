@@ -45,9 +45,16 @@ vim.cmd 'autocmd FileType c nnoremap <buffer> <leader><F5> <ESC>:w<CR>:split<CR>
 vim.cmd 'autocmd FileType markdown nnoremap <silent> <buffer> gf %:let f=expand("<cfile>")<CR>:exe("e ".f).".md"<CR>'
 vim.cmd 'autocmd FileType markdown nnoremap <silent> <buffer> gsf %:let f=expand("<cfile>")<CR>:exe("vs ".f).".md"<CR>'
 
---
+
 -- WhichKey
 -- All keymaps
 keymap("n", "<LEADER><BS>", ":WhichKey<CR>", opts)
 -- Insert mode keymaps
 keymap("i", "<C-Space>", "<C-o>:WhichKey<CR><leader>i", opts)
+
+-- Pretty folds and indent line
+-- Enter insert mode to update disappearing indent lines
+keymap("n", "zo", "zoa <BS><ESC>", opts)
+keymap("n", "zO", "zOa <BS><ESC>", opts)
+keymap("n", "zr", "zra <BS><ESC>", opts)
+keymap("n", "zR", "zRa <BS><ESC>", opts)
