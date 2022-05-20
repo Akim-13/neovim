@@ -3,33 +3,35 @@ if not status_ok then
   return
 end
 
-vim.cmd "hi NormalFloat ctermbg=NONE" -- Make the background of popup window invisible
+-- Make the background of popup window invisible
+vim.cmd "hi NormalFloat ctermbg=NONE" 
 
 local setup = {
     plugins = {
         marks = true, -- shows a list of your marks on ' and `
         registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
         spelling = {
-          enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-          suggestions = 20, -- how many suggestions should be shown in the list?
+            enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
+            suggestions = 20, -- how many suggestions should be shown in the list?
         },
         -- the presets plugin, adds help for a bunch of default keybindings in Neovim
         -- No actual key bindings are created
         presets = {
-          operators = false, -- adds help for operators like d, y, ... and registers them for motion / text object completion
-          motions = false, -- adds help for motions
-          text_objects = false, -- help for text objects triggered after entering an operator
-          windows = true, -- default bindings on <c-w>
-          nav = true, -- misc bindings to work with windows
-          z = true, -- bindings for folds, spelling and others prefixed with z
-          g = true, -- bindings for prefixed with g
+            operators = false, -- adds help for operators like d, y, ... and registers them for motion / text object completion
+            motions = false, -- adds help for motions
+            text_objects = false, -- help for text objects triggered after entering an operator
+            windows = true, -- default bindings on <c-w>
+            nav = true, -- misc bindings to work with windows
+            z = true, -- bindings for folds, spelling and others prefixed with z
+            g = true, -- bindings for prefixed with g
         },
-      },
-      -- add operators that will trigger motion and text object completion
-      -- to enable all native operators, set the preset / operators plugin above
-      -- operators = { gc = "Comments" },
-      key_labels = {
-        -- override the label used to display some keys. It doesn't effect WK in any other way.
+    },
+
+    -- add operators that will trigger motion and text object completion
+    -- to enable all native operators, set the preset / operators plugin above
+    -- operators = { gc = "Comments" },
+    key_labels = {
+        -- Display control combinations in lowercase
         ["<C-A>"] = "<C-a>",
         ["<C-B>"] = "<C-b>",
         ["<C-C>"] = "<C-c>",
@@ -62,45 +64,50 @@ local setup = {
         ["<c-w>"] = "<C-w>",
         ["<NL>"]  = "<C-j>",
 
-        --["+"] = "<SHIFT>=",
-        --["_"] = "<SHIFT>-",
         --["<C->"] = "<C->",
         --[""] = "",
-      },
-      icons = {
+    },
+
+    icons = {
         breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
         separator = "", -- ➜symbol used between a key and it's label
         group = "", -- symbol prepended to a group 
-      },
-      popup_mappings = {
+    },
+
+    popup_mappings = {
         scroll_down = "J", -- binding to scroll down inside the popup
         scroll_up = "K", -- binding to scroll up inside the popup
-      },
-      window = {
+    },
+
+    window = {
         border = "single", -- none, single, double, shadow, rounded
         position = "bottom", -- bottom, top
         margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
         padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
         winblend = 0,
-      },
-      layout = {
+    },
+
+    layout = {
         height = { min = 4, max = 25 }, -- min and max height of the columns
         width = { min = 20, max = 50 }, -- min and max width of the columns
         spacing = 4, -- spacing between columns
         align = "center", -- align columns left, center or right
-      },
-      ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
-      hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
-      show_help = true, -- show help message on the command line when the popup is visible
-      triggers = "auto", -- automatically setup triggers
-      --triggers = {"<C-;>", "<leader>"}, -- or specify a list manually
-      triggers_blacklist = {
-        -- list of mode / prefixes that should never be hooked by WhichKey
-        -- this is mostly relevant for key maps that start with a native binding
-        -- most people should not need to change this
-        i = { "j", "k" },
-        v = { "j", "k" },
-      },
+    },
+
+    ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
+    hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
+    show_help = true, -- show help message on the command line when the popup is visible
+
+    triggers = "auto", -- automatically setup triggers
+    --triggers = {"<C-;>", "<leader>"}, -- or specify a list manually
+
+    triggers_blacklist = {
+      -- list of mode / prefixes that should never be hooked by WhichKey
+      -- this is mostly relevant for key maps that start with a native binding
+      -- most people should not need to change this
+      i = { "j", "k" },
+      v = { "j", "k" },
+    },
 }
 
 -- Horrible (but at least straightforward) solution
@@ -192,13 +199,14 @@ local nMaps = {
     ["<LEADER>i<C-t>"] = { "i<C-t>", " Indent right" },
     ["<LEADER>i<C-d>"] = { "i<C-d>", " Indent left" },
     ["<LEADER>i<C-Space>"] = { "i",  " Show this pop-up in INSERT MODE" },
-    -- Duplicated from iMaps, so that I could give a description.
+
+    -- Window commands duplicated from iMaps, so that I could give a description.
     ["<LEADER>i<C-h>"] = { "i<C-o>h", " Move left"},
     ["<LEADER>i<C-j>"] = { "i<C-o>j", " Move down"},
     ["<LEADER>i<C-k>"] = { "i<C-o>k", " Move up"},
     ["<LEADER>i<C-l>"] = { "i<C-o>l", " Move right"},
 
-    -- WhichKey defaults
+   -- WhichKey defaults
     ["H"] = "which_key_ignore",     -- Doesn't work until this file is sourced
     ["L"] = "which_key_ignore",     -- Doesn't work until this file is sourced
     ["M"] = "which_key_ignore",     -- Doesn't work until this file is sourced
@@ -215,14 +223,14 @@ local nMaps = {
     ["<LEADER>wa"] = { ":wa<CR>",             " Write all" },
     ["<LEADER>ww"] = { ":w<CR>",              " Write" },
 
-    -- Exit
+   -- Exit
     ["Z"] =  { name =" Exit" },
     ["ZZ"] = { ":confirm x<CR>", " Exit current window" },
     ["ZA"] = { ":wqa<CR>",       " Exit all after saving" },
     ["ZQ"] = { "ZQ",             "窱Quit current window without saving" },
     ["ZX"] = { ":conf qall<CR>", " Quit all without saving" },
 
-    -- Debugging
+  -- Debugging
     ["<LEADER>d"] = { name =                                                   " Debug" },
     ["<LEADER>dq"] = { ":call vimspector#Reset()<CR>",                         " Quit" },
     ["<F3>"] = { ":call vimspector#Stop()<CR>",                                "[] ﱢ Stop" },
