@@ -6,8 +6,8 @@ vim.cmd "let g:gruvbox_color_column='bg0'"
 
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not status_ok then
-  vim.notify("ERROR: colorscheme " .. colorscheme .. " not found")
-  return
+    vim.notify("ERROR: colorscheme " .. colorscheme .. " not found")
+    return
 end
 
 
