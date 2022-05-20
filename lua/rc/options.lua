@@ -77,12 +77,12 @@ autocmd CmdWinEnter * lua require('cmp').setup({enabled = false})
 autocmd CmdWinLeave * lua require('cmp').setup({enabled = true})
 ]]
 
--- Make folds persistent
+-- Make folds persistent (except certain filetypes)
 vim.cmd [[
 augroup remember_folds
-  autocmd!
-  au BufWinLeave ?* mkview 1
-  au BufWinEnter ?* silent! loadview 1
+    let ftToIgnore = ['python']
+    autocmd!
+    autocmd BufWinLeave * if index(ftToIgnore, &ft) < 0 | mkview 1 
+    autocmd BufWinEnter * if index(ftToIgnore, &ft) < 0 | silent! loadview 1 
 augroup END
-
 ]]

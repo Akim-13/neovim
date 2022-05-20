@@ -54,7 +54,7 @@ keymap("i", "<C-Space>", "<C-o>:WhichKey<CR><leader>i", opts)
 
 -- Pretty folds and indent line
 -- Enter insert mode to update disappearing indent lines
-keymap("n", "zo", "zoa <BS><ESC>", opts)
-keymap("n", "zO", "zOa <BS><ESC>", opts)
-keymap("n", "zr", "zra <BS><ESC>", opts)
-keymap("n", "zR", "zRa <BS><ESC>", opts)
+keymap("n", "zo", "zoa0<BS><ESC>", opts)
+keymap("n", "zO", "zOa0<BS><ESC>", opts)
+keymap("n", "zr", "zra0<BS><ESC>", opts)
+keymap("n", "zR", "zRa0<BS><ESC>", opts)

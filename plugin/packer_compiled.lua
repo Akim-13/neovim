@@ -74,6 +74,11 @@ _G.packer_plugins = {
     path = "/home/akim/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  SimpylFold = {
+    loaded = true,
+    path = "/home/akim/.local/share/nvim/site/pack/packer/start/SimpylFold",
+    url = "https://github.com/tmhedberg/SimpylFold"
+  },
   ["bufferline.nvim"] = {
     loaded = true,
     path = "/home/akim/.local/share/nvim/site/pack/packer/start/bufferline.nvim",

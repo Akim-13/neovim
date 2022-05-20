@@ -108,6 +108,8 @@ return packer.startup(function(use)
     use 'anuvyklack/pretty-fold.nvim'
     -- Folds preview
     use 'anuvyklack/nvim-keymap-amend'
+    -- Folding engine for python
+    use 'tmhedberg/SimpylFold'
 
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then
