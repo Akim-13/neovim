@@ -3,3 +3,8 @@ num
 tabline
 TABs
 colorcolumn
+WONTFIX
+options
+msg
+FilesHandler
+FileHandler

@@ -264,11 +264,11 @@ local nMaps = {
     ["<C-p>"] = { ":bprevious<CR>",        " Previous buffer" },
 
     -- Commands
-    ["<LEADER>c"] = { name =                                    " Commands" },
-    ["<LEADER>ch"] = { ':call <SNR>6_ShowHelp("")<left><left>', " Help", silent = false },
-    ["<LEADER>cs"] = { ":%s/",                                  "﯒ Substitute", silent = false },
-    ["<LEADER>cS"] = { ":%s/\\<\\><left><left>",                "﯒ Exact substitution", silent = false },
-    ["<LEADER>ce"] = { "/\\<\\><left><left>",                   " Exact search", silent = false },
+    ["<LEADER>:"] = { name =                                    " Commands" },
+    ["<LEADER>:h"] = { ':call <SNR>6_ShowHelp("")<left><left>', " Help", silent = false },
+    ["<LEADER>:s"] = { ":%s/",                                  "﯒ Substitute", silent = false },
+    ["<LEADER>:S"] = { ":%s/\\<\\><left><left>",                "﯒ Exact substitution", silent = false },
+    ["<LEADER>:e"] = { "/\\<\\><left><left>",                   " Exact search", silent = false },
 
     -- Nvim-tree
     ["<LEADER>e"] = { ":NvimTreeToggle<cr>", "פּ Toggle file explorer" },
@@ -286,6 +286,7 @@ local nMaps = {
 
     -- UndoTree
     ["<LEADER>u"] = { ":UndotreeToggle<CR><C-w>w", "碑Undo history" },
+
 
     --[""] = { "", " " },
     --[""] = { "", " " },
