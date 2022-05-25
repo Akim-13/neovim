@@ -111,6 +111,9 @@ return packer.startup(function(use)
     -- Folding engine for python
     use 'tmhedberg/SimpylFold'
 
+    -- Comments
+    use 'numToStr/Comment.nvim'
+
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then
       require("packer").sync()
