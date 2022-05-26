@@ -26,6 +26,9 @@ keymap("n", "N", "Nzz", opts)
 -- Enter command line window
 keymap("n", ":", ":<C-f>i", opts)
 
+-- Move text up and down
+keymap("n", "J", ":.move +1<CR>", opts)
+keymap("n", "K", ":.move -2<CR>", opts)
 
 -- VISUAL --
 -- Stay in indent mode
@@ -35,6 +38,7 @@ keymap("v", ">", ">gv", opts)
 -- Move text up and down
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
+
 
 
 -- Python run code
@@ -54,7 +58,7 @@ keymap("i", "<C-Space>", "<C-o>:WhichKey<CR><leader>i", opts)
 
 -- Pretty folds and indent line
 -- Enter insert mode to update disappearing indent lines
-keymap("n", "zo", "zoa <BS><ESC>", opts)
-keymap("n", "zO", "zOa <BS><ESC>", opts)
-keymap("n", "zr", "zra <BS><ESC>", opts)
-keymap("n", "zR", "zRa <BS><ESC>", opts)
+keymap("n", "zo", "zoa0<BS><ESC>", opts)
+keymap("n", "zO", "zOa0<BS><ESC>", opts)
+keymap("n", "zr", "zra0<BS><ESC>", opts)
+keymap("n", "zR", "zRa0<BS><ESC>", opts)

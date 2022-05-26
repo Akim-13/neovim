@@ -183,6 +183,8 @@ local vMaps = {
 }
 
 local xMaps = {
+    ["\\"] = { "<Plug>(comment_toggle_linewise_visual)", ""},
+    ["<C-\\>"] = { "<Plug>(comment_toggle_blockwise_visual)", ""},
 }
 
 local tMaps = {
@@ -193,7 +195,7 @@ local cMaps = {
 
 local nMaps = {
     -- INSERT MODE
-    -- The reason these mappings aren't in iMaps is that I 
+    -- The reason these mappings aren't in iMaps is that I
     -- can't find a way to triger WhichKey in insert mode.
     ["<LEADER>i"] = { name = " INSERT MODE" },
     ["<LEADER>i<C-t>"] = { "i<C-t>", " Indent right" },
@@ -206,7 +208,7 @@ local nMaps = {
     ["<LEADER>i<C-k>"] = { "i<C-o>k", " Move up"},
     ["<LEADER>i<C-l>"] = { "i<C-o>l", " Move right"},
 
-   -- WhichKey defaults
+    -- WhichKey defaults
     ["H"] = "which_key_ignore",     -- Doesn't work until this file is sourced
     ["L"] = "which_key_ignore",     -- Doesn't work until this file is sourced
     ["M"] = "which_key_ignore",     -- Doesn't work until this file is sourced
@@ -223,14 +225,14 @@ local nMaps = {
     ["<LEADER>wa"] = { ":wa<CR>",             " Write all" },
     ["<LEADER>ww"] = { ":w<CR>",              " Write" },
 
-   -- Exit
+    -- Exit
     ["Z"] =  { name =" Exit" },
     ["ZZ"] = { ":confirm x<CR>", " Exit current window" },
     ["ZA"] = { ":wqa<CR>",       " Exit all after saving" },
     ["ZQ"] = { "ZQ",             "窱Quit current window without saving" },
     ["ZX"] = { ":conf qall<CR>", " Quit all without saving" },
 
-  -- Debugging
+     -- Debugging
     ["<LEADER>d"] = { name =                                                   " Debug" },
     ["<LEADER>dq"] = { ":call vimspector#Reset()<CR>",                         " Quit" },
     ["<F3>"] = { ":call vimspector#Stop()<CR>",                                "[] ﱢ Stop" },
@@ -264,11 +266,11 @@ local nMaps = {
     ["<C-p>"] = { ":bprevious<CR>",        " Previous buffer" },
 
     -- Commands
-    ["<LEADER>c"] = { name =                                    " Commands" },
-    ["<LEADER>ch"] = { ':call <SNR>6_ShowHelp("")<left><left>', " Help", silent = false },
-    ["<LEADER>cs"] = { ":%s/",                                  "﯒ Substitute", silent = false },
-    ["<LEADER>cS"] = { ":%s/\\<\\><left><left>",                "﯒ Exact substitution", silent = false },
-    ["<LEADER>ce"] = { "/\\<\\><left><left>",                   " Exact search", silent = false },
+    ["<LEADER>:"] = { name =                                    " Commands" },
+    ["<LEADER>:h"] = { ':call <SNR>6_ShowHelp("")<left><left>', " Help", silent = false },
+    ["<LEADER>:s"] = { ":%s/",                                  "﯒ Substitute", silent = false },
+    ["<LEADER>:S"] = { ":%s/\\<\\><left><left>",                "﯒ Exact substitution", silent = false },
+    ["<LEADER>:e"] = { "/\\<\\><left><left>",                   " Exact search", silent = false },
 
     -- Nvim-tree
     ["<LEADER>e"] = { ":NvimTreeToggle<cr>", "פּ Toggle file explorer" },
@@ -287,12 +289,20 @@ local nMaps = {
     -- UndoTree
     ["<LEADER>u"] = { ":UndotreeToggle<CR><C-w>w", "碑Undo history" },
 
-    --[""] = { "", " " },
-    --[""] = { "", " " },
-    --[""] = { "", "" },
-    --[""] = { "", "" },
-    --[""] = { "", "" },
+    -- Comments (see comment.lua)
+    ["<LEADER>c"] = { nil, " Comment {move}" },
+    ["<LEADER>b"] = { nil, " Block Comment {move}" },
+    ["<LEADER><C-\\>"] = { nil, " Comment below" },
+    ["<LEADER>\\"] = { nil, " Comment above" },
+    ["<C-\\>"] = { nil, " Toggle block comment" },
+    ["\\"] = { nil, " Toggle comment" },
 
+    --[""] = { "", " " },
+    --[""] = { "", " " },
+    --[""] = { "", "" },
+    --[""] = { "", "" },
+    --[""] = { "", "" },
+    
     -- More keymaps here:
     -- https://github.com/LunarVim/Neovim-from-scratch/commit/91e22c4076ae58cec23ac5a9b2ea7181dd8f988a
 }
@@ -300,3 +310,4 @@ local nMaps = {
 which_key.setup(setup)
 which_key.register(nMaps, nOpts)
 which_key.register(iMaps, iOpts)
+which_key.register(xMaps, xOpts)

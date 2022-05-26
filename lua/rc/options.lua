@@ -32,7 +32,7 @@ local options = {
     showtabline = 2,                                -- Show the tabline at the top
     whichwrap = 'h,l',                              -- Go to the next/previous line after reaching the end/beginning
     termguicolors = true,                           -- More colours
-    timeoutlen = 300,                               -- Shorter delay for some of the key comninations
+    timeoutlen = 300,                               -- Shorter delay for some of the key combinations
     undofile = true,                                -- Persistent undo history
     undodir = '/home/akim/.cache/nvim/undo'         -- Undo directory
 }
@@ -43,7 +43,7 @@ end
 
 vim.opt.clipboard:append('unnamedplus')             -- Link yank buffer with system's clipboard
 vim.opt.iskeyword:append('-')                       -- Treat 'example-word' as one word, i.e. `dw` will delete the whole thing
-vim.opt.isfname:append('32')                        -- Treat spaces as delimeters. Helps gf to go to a filename containing a space
+vim.opt.isfname:append('32')                        -- Treat spaces as delimiters. Helps gf to go to a filename containing a space
 vim.opt.formatoptions:remove('cro')                 -- Stop newline continuation of comments
 vim.cmd 'set t_kb=^?'
 
@@ -53,8 +53,8 @@ vim.cmd 'set t_kb=^?'
 vim.cmd 'autocmd BufWrite * retab'
 -- Save markdown file after each change
 vim.cmd 'autocmd TextChanged,TextChangedI *.md silent write'
--- Enable spell check in markdown files
-vim.cmd 'autocmd FileType markdown set spell'
+-- Enable spell check in markdown and python files
+vim.cmd 'autocmd FileType markdown,python set spell'
 
 -- Open help either vertically or horizontally depending on the window size
 vim.cmd [[
@@ -68,6 +68,7 @@ function! s:ShowHelp(tag) abort
 endfunction
 command! -nargs=1 H call s:ShowHelp(<f-args>)
 ]]
+
 -- Always open help as a vertical split
 -- https://github.com/akim-13/neovim/blob/43632b8f0f801fc382920684c121f5fd43daf5a0/lua/rc/options.lua#L71-L77
 
@@ -77,12 +78,12 @@ autocmd CmdWinEnter * lua require('cmp').setup({enabled = false})
 autocmd CmdWinLeave * lua require('cmp').setup({enabled = true})
 ]]
 
--- Make folds persistent
+-- Make folds persistent (except certain filetypes)
 vim.cmd [[
 augroup remember_folds
-  autocmd!
-  au BufWinLeave ?* mkview 1
-  au BufWinEnter ?* silent! loadview 1
+    let ftToIgnore = ['python']
+    autocmd!
+    autocmd BufWinLeave * if index(ftToIgnore, &ft) < 0 | mkview 1 
+    autocmd BufWinEnter * if index(ftToIgnore, &ft) < 0 | silent! loadview 1 
 augroup END
-
 ]]
