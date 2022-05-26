@@ -19,31 +19,31 @@ comment.setup {
     ---@type string|fun():string
     ignore = nil,
 
-    ---LHS of toggle mappings in NORMAL + VISUAL mode
+    ---LHS of toggle mappings in NORMAL + VISUAL mode (see whichkey.lua)
     ---@type table
     toggler = {
         ---Line-comment toggle keymap
-        line = 'gcc',
+        line = '\\',
         ---Block-comment toggle keymap
-        block = 'gbc',
+        block = '<C-\\>',
     },
 
     ---LHS of operator-pending mappings in NORMAL + VISUAL mode
     ---@type table
     opleader = {
         ---Line-comment keymap
-        line = 'gc',
+        line = '<LEADER>c',
         ---Block-comment keymap
-        block = 'gb',
+        block = '<LEADER>b',
     },
 
     ---LHS of extra mappings
     ---@type table
     extra = {
         ---Add comment on the line above
-        above = 'gcO',
+        above = '<LEADER>\\',
         ---Add comment on the line below
-        below = 'gco',
+        below = '<LEADER><C-\\>',
         ---Add comment at the end of line
         -- eol = 'gcA',
     },

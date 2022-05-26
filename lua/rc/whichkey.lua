@@ -183,6 +183,8 @@ local vMaps = {
 }
 
 local xMaps = {
+    ["\\"] = { "<Plug>(comment_toggle_linewise_visual)", ""},
+    ["<C-\\>"] = { "<Plug>(comment_toggle_blockwise_visual)", ""},
 }
 
 local tMaps = {
@@ -287,8 +289,13 @@ local nMaps = {
     -- UndoTree
     ["<LEADER>u"] = { ":UndotreeToggle<CR><C-w>w", "碑Undo history" },
 
-    -- Comments
-    -- TODO
+    -- Comments (see comment.lua)
+    ["<LEADER>c"] = { nil, " Comment {move}" },
+    ["<LEADER>b"] = { nil, " Block Comment {move}" },
+    ["<LEADER><C-\\>"] = { nil, " Comment below" },
+    ["<LEADER>\\"] = { nil, " Comment above" },
+    ["<C-\\>"] = { nil, " Toggle block comment" },
+    ["\\"] = { nil, " Toggle comment" },
 
     --[""] = { "", " " },
     --[""] = { "", " " },
@@ -303,3 +310,4 @@ local nMaps = {
 which_key.setup(setup)
 which_key.register(nMaps, nOpts)
 which_key.register(iMaps, iOpts)
+which_key.register(xMaps, xOpts)
