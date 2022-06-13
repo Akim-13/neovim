@@ -224,6 +224,11 @@ _G.packer_plugins = {
     path = "/home/akim/.local/share/nvim/site/pack/packer/start/vim-bbye",
     url = "https://github.com/moll/vim-bbye"
   },
+  ["vim-wakatime"] = {
+    loaded = true,
+    path = "/home/akim/.local/share/nvim/site/pack/packer/start/vim-wakatime",
+    url = "https://github.com/wakatime/vim-wakatime"
+  },
   vimspector = {
     loaded = true,
     path = "/home/akim/.local/share/nvim/site/pack/packer/start/vimspector",
