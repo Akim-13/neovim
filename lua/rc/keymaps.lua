@@ -45,6 +45,7 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
 
 -- Python run code
+vim.cmd 'autocmd FileType python nnoremap <buffer> <F5> <ESC>:w<CR>:vsplit<CR>:terminal python3.10 "%"<CR>i'
 vim.cmd 'autocmd FileType python nnoremap <buffer> <leader><F5> <ESC>:w<CR>:split<CR>:terminal python3.10 "%"<CR>i'
 -- C run code
 vim.cmd 'autocmd FileType c nnoremap <buffer> <leader><F5> <ESC>:w<CR>:split<CR>:terminal gcc -o cmpd "%" && ./cmpd<CR>i'

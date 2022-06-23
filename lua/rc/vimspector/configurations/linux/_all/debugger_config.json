@@ -2,21 +2,21 @@
   "configurations": {
     "Python: Launch": {
       "adapter": "debugpy",
-	  "breakpoints": {
-	    "exception": {
-	      "caught": "Y",
-		  "uncaught": "Y",
-		  "userUnhandled": "Y",
-		  "raised": "Y"
-	    }
-	  },
-	  "configuration": {
+      "breakpoints": {
+        "exception": {
+          "caught": "Y",
+          "uncaught": "Y",
+          "userUnhandled": "Y",
+          "raised": "Y"
+        }
+      },
+      "configuration": {
         "name": "Python: Launch",
         "type": "python",
         "request": "launch",
         "python": "/usr/bin/python3.10",
-		"console": "integratedTerminal",
-        "stopOnEntry": true,
+        "console": "integratedTerminal",
+        "stopOnEntry": false,
         "debugOptions": [],
         "program": "${file}"
       }

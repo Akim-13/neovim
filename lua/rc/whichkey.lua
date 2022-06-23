@@ -233,19 +233,20 @@ local nMaps = {
     ["ZX"] = { ":conf qall<CR>", " Quit all without saving" },
 
      -- Debugging
-    ["<LEADER>d"] = { name =                                                   " Debug" },
-    ["<LEADER>dq"] = { ":call vimspector#Reset()<CR>",                         " Quit" },
-    ["<F3>"] = { ":call vimspector#Stop()<CR>",                                "[] ﱢ Stop" },
-    ["<F4>"] = { ":call vimspector#Restart()<CR>",                             "[]  Restart" },
-    ["<F5>"] = { ":call vimspector#Continue()<CR>",                            "[]  Start/continue" },
-    ["<F6>"] = { ":call vimspector#Pause()<CR>",                               "[]  Pause" },
-    ["<F8>"] = { ":call vimspector#AddFunctionBreakpoint()<CR>",               "[]  Add function breakpoint" },
-    ["<LEADER><F8>"] = { ":call vimspector#RunToCursor()<CR>",                 "[]  Run to cursor" },
-    ["<F9>"] = { ":call vimspector#ToggleBreakpoint()<CR>",                    "[] ● Toggle breakpoint" },
-    ["<LEADER><F9>"] = { ":call vimspector#ToggleConditionalBreakpoint()<CR>", "[] ◆ Toggle conditional breakpoint" },
-    ["<F10>"] = { ":call vimspector#StepOver()<CR>",                           "[]  Step over" },
-    ["<F11>"] = { ":call vimspector#StepInto()<CR>",                           "[]  Step into" },
-    ["<F12>"] = { ":call vimspector#StepOut()<CR>",                            "[]  Step out" },
+    ["<F1>"] = { "<CR>:call vimspector#Reset()<CR>",                               "[]  Quit" },
+    ["<F2>"] = { "<CR>:call vimspector#Stop()<CR>",                                "[] ﱢ Stop" },
+    ["<F3>"] = { ":w<CR>:call vimspector#Restart()<CR>",                           "[]  Restart" },
+    ["<F4>"] = { ":w<CR>:call vimspector#Continue()<CR>",                          "[]  Start/continue" },
+    ["<LEADER><F4>"] = { ":w<CR>:call vimspector#RunToCursor()<CR>",               "[]  Run to cursor" },
+    ["<F5>"] = { "<F5>",                  --[[ From autocmd in keymaps.lua ]]      " Run code (vertical split)" },
+    ["<LEADER><F5>"] = { "<LEADER><F5>",  --[[ From autocmd in keymaps.lua ]]      " Run code (horizontal split)" },
+    ["<F6>"] = { ":w<CR>:call vimspector#Pause()<CR>",                             "[]  Pause" },
+    ["<F8>"] = { "<CR>:call vimspector#AddFunctionBreakpoint()<CR>",               "[]  Add function breakpoint" },
+    ["<F9>"] = { ":w<CR>:call vimspector#ToggleBreakpoint()<CR>",                  "[] ● Toggle breakpoint" },
+    ["<LEADER><F9>"] = { "<CR>:call vimspector#ToggleConditionalBreakpoint()<CR>", "[] ◆ Toggle conditional breakpoint" },
+    ["<F10>"] = { ":w<CR>:call vimspector#StepOver()<CR>",                         "[]  Step over" },
+    ["<F11>"] = { ":w<CR>:call vimspector#StepInto()<CR>",                         "[]  Step into" },
+    ["<F12>"] = { ":w<CR>:call vimspector#StepOut()<CR>",                          "[]  Step out" },
 
     -- Windows
     ["<c-w>"] = { name =                 " Windows" },
@@ -274,8 +275,7 @@ local nMaps = {
 
     -- Nvim-tree
     ["<LEADER>e"] = { ":NvimTreeToggle<cr>", "פּ Toggle file explorer" },
-    -- From autocmd in keymaps.lua
-    ["<LEADER><F5>"] = { "<LEADER><F5>",     " Run code" },
+
     ["<LEADER>o"] = { "mzo<ESC>`z",          "鱗Insert new line below" },
     ["<LEADER>O"] = { "mzO<ESC>`z",          "麟Insert new line above" },
     ["<LEADER>/"] = { ":set nohlsearch<CR>", " Disable highlight search" },

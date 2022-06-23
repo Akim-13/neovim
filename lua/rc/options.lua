@@ -55,6 +55,8 @@ vim.cmd 'autocmd BufWrite * retab'
 vim.cmd 'autocmd TextChanged,TextChangedI *.md silent write'
 -- Enable spell check in markdown and python files
 vim.cmd 'autocmd FileType markdown,python set spell'
+-- But disable it for TERMINAL mode
+vim.cmd 'autocmd TermOpen * setlocal nospell'
 
 -- Open help either vertically or horizontally depending on the window size
 vim.cmd [[
