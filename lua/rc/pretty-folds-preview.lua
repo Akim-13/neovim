@@ -1,4 +1,4 @@
-local status_ok, pretty_fold_preview = pcall(require, "pretty-fold.preview")
+local status_ok, pretty_fold_preview = pcall(require, "fold-preview")
 if not status_ok then
     return
 end

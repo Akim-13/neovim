@@ -107,7 +107,13 @@ return packer.startup(function(use)
     -- Pretty folds
     use 'anuvyklack/pretty-fold.nvim'
     -- Folds preview
-    use 'anuvyklack/nvim-keymap-amend'
+    use { 'anuvyklack/fold-preview.nvim',
+        requires = 'anuvyklack/keymap-amend.nvim',
+        config = function()
+          require('fold-preview').setup()
+        end
+    }
+
     -- Folding engine for python
     use 'tmhedberg/SimpylFold'
 
@@ -116,6 +122,9 @@ return packer.startup(function(use)
 
     -- Activity tracker
     use 'wakatime/vim-wakatime'
+
+    -- Latex compiler
+    use 'lervag/vimtex'
 
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then
