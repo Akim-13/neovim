@@ -126,6 +126,9 @@ return packer.startup(function(use)
     -- Latex compiler
     use 'lervag/vimtex'
 
+    -- Markdown previewer
+    use 'iamcco/markdown-preview.nvim'
+
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then
       require("packer").sync()
