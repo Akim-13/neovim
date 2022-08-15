@@ -297,6 +297,9 @@ local nMaps = {
     ["<C-\\>"] = { nil, " Toggle block comment" },
     ["\\"] = { nil, " Toggle comment" },
 
+    -- Markdown preview
+    ["<LEADER>m"] = { ":MarkdownPreviewToggle<CR>", " Toggle markdown preview" },
+
     --[""] = { "", " " },
     --[""] = { "", " " },
     --[""] = { "", "" },
