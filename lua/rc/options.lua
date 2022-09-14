@@ -52,11 +52,13 @@ vim.cmd 'set t_kb=^?'
 -- Change tabs to spaces every time buffer is written
 vim.cmd 'autocmd BufWrite * retab'
 -- Save markdown file after each change
-vim.cmd 'autocmd TextChanged,TextChangedI *.md silent write'
+-- vim.cmd 'autocmd TextChanged,TextChangedI *.md silent write'
 -- Enable spell check in markdown and python files
 vim.cmd 'autocmd FileType markdown,python set spell'
 -- But disable it for TERMINAL mode
 vim.cmd 'autocmd TermOpen * setlocal nospell'
+-- More Markdown specific settings
+vim.cmd 'autocmd FileType markdown set tw=79'
 
 -- Open help either vertically or horizontally depending on the window size
 vim.cmd [[
@@ -81,11 +83,11 @@ autocmd CmdWinLeave * lua require('cmp').setup({enabled = true})
 ]]
 
 -- Make folds persistent (except certain filetypes)
-vim.cmd [[
-augroup remember_folds
-    let ftToIgnore = ['python']
-    autocmd!
-    autocmd BufWinLeave * if index(ftToIgnore, &ft) < 0 | mkview 1 
-    autocmd BufWinEnter * if index(ftToIgnore, &ft) < 0 | silent! loadview 1 
-augroup END
-]]
+-- vim.cmd [[
+-- augroup remember_folds
+--     let ftToIgnore = ['python']
+--     autocmd!
+--     autocmd BufWinLeave * if index(ftToIgnore, &ft) < 0 | mkview 1 
+--     autocmd BufWinEnter * if index(ftToIgnore, &ft) < 0 | silent! loadview 1 
+-- augroup END
+-- ]]

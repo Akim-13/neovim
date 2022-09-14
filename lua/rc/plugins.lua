@@ -126,7 +126,7 @@ return packer.startup(function(use)
     -- Latex compiler
     use 'lervag/vimtex'
 
-    -- Markdown previewer
+    -- Markdown previewer (requires manual installation with yarn, see GitHub)
     use 'iamcco/markdown-preview.nvim'
 
     -- Automatically set up your configuration after cloning packer.nvim
