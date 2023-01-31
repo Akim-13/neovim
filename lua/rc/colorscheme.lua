@@ -14,8 +14,13 @@ require("gruvbox").setup({
         dark0_hard = "#1C1C1C"
     },
     overrides = {
-        SignColumn = {bg = "#1C1C1C"},
-        ColorColumn = {bg = "#1C1C1C"}
+        ColorColumn       = { bg = "#1C1C1C" },
+        SignColumn        = { bg = "#1C1C1C" },
+        GruvboxAquaSign   = { bg = "#1C1C1C" },
+        GruvboxwBlueSign  = { bg = "#1C1C1C" },
+        GruvboxYellowSign = { bg = "#1C1C1C" },
+        GruvboxRedSign    = { bg = "#1C1C1C" },
+        NvimTreeRootFolder = { fg = "#358a5b" },
     },
     dim_inactive = false,
     transparent_mode = false,
