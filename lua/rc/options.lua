@@ -24,6 +24,7 @@ local options = {
     encoding = 'utf-8',                             -- Change encoding to UTF-8
     cursorline = true,                              -- Enable highlighting of the current line
     showcmd = true,                                 -- Show which keys are being pressed
+    cmdheight = 0,                                   -- Autohide command line when not in use
     scrolloff = 7,                                  -- Keep the cursor N lines from the top and the bottom of the screen
     sidescroll = 0,                                 -- Keeps the cursor centered when going off the screen
     sidescrolloff = 4,                              -- Number of columns to keep from the edge of the screen
@@ -45,6 +46,7 @@ vim.opt.clipboard:append('unnamedplus')             -- Link yank buffer with sys
 vim.opt.iskeyword:append('-')                       -- Treat 'example-word' as one word, i.e. `dw` will delete the whole thing
 vim.opt.isfname:append('32')                        -- Treat spaces as delimiters. Helps gf to go to a filename containing a space
 vim.opt.formatoptions:remove('cro')                 -- Stop newline continuation of comments
+vim.opt.fillchars:append('vert:▏')                  -- ▕ right version
 vim.cmd 'set t_kb=^?'
 
 
@@ -91,3 +93,12 @@ autocmd CmdWinLeave * lua require('cmp').setup({enabled = true})
 --     autocmd BufWinEnter * if index(ftToIgnore, &ft) < 0 | silent! loadview 1 
 -- augroup END
 -- ]]
+
+vim.cmd [[
+function! SynGroup()
+    let l:s = synID(line('.'), col('.'), 1)
+    echo synIDattr(l:s, 'name') . ' -> ' . synIDattr(synIDtrans(l:s), 'name')
+endfun
+]]
+
+

@@ -68,15 +68,15 @@ lualine.setup({
         theme = "auto",
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
-        disabled_filetypes = { "dashboard", "NvimTree", "Outline" },
+        disabled_filetypes = { "dashboard", "NvimTree", "Outline" }, -- TODO: research
+        ignore_focus = { "NvimTree" },
         always_divide_middle = true,
+
     },
     sections = {
         lualine_a = { branch, diagnostics },
         lualine_b = { mode },
         lualine_c = {},
-        -- lualine_x = { "encoding", "fileformat", "filetype" },
-        --lualine_x = { diff, spaces, "encoding", filetype },
         lualine_x = { diff, filetype },
         lualine_y = { location },
         lualine_z = { progress },
@@ -89,7 +89,9 @@ lualine.setup({
         lualine_y = {},
         lualine_z = {},
     },
-    tabline = {},
-    extensions = {},
+    tabline = {
+
+    },
+    extensions = { "nvim-tree" },
 })
 
