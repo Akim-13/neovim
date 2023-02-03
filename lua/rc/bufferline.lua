@@ -113,7 +113,7 @@ bufferline.setup {
         close_button = {
             fg = "#9D2E21",
             bg = bg_inv,
-        }, 
+        },
         separator_selected = {
             fg = bg_drk,
             bg = bg_sel,
@@ -344,5 +344,5 @@ bufferline.setup {
         --     bold = true,
         --     italic = true,
         -- },
-    }, 
+    },
 }

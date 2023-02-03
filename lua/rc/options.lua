@@ -29,7 +29,7 @@ local options = {
     sidescroll = 0,                                 -- Keeps the cursor centered when going off the screen
     sidescrolloff = 4,                              -- Number of columns to keep from the edge of the screen
     ruler = true,                                   -- Always show cursor position at the bottom right corner [AIRLINE]
-    syntax = 'off',                                 -- Enable syntax highlighting
+    syntax = 'on',                                  -- Enable syntax highlighting
     showtabline = 2,                                -- Show the tabline at the top
     whichwrap = 'h,l',                              -- Go to the next/previous line after reaching the end/beginning
     termguicolors = true,                           -- More colours
@@ -54,7 +54,7 @@ vim.cmd 'set t_kb=^?'
 -- Change tabs to spaces every time buffer is written
 vim.cmd 'autocmd BufWrite * retab'
 -- Save markdown file after each change
--- vim.cmd 'autocmd TextChanged,TextChangedI *.md silent write'
+vim.cmd 'autocmd TextChanged,TextChangedI *.md silent write'
 -- Enable spell check in markdown and python files
 vim.cmd 'autocmd FileType markdown,python set spell'
 -- But disable it for TERMINAL mode
@@ -94,6 +94,7 @@ autocmd CmdWinLeave * lua require('cmp').setup({enabled = true})
 -- augroup END
 -- ]]
 
+-- Determine which highlight group is under the cursor
 vim.cmd [[
 function! SynGroup()
     let l:s = synID(line('.'), col('.'), 1)
@@ -101,4 +102,32 @@ function! SynGroup()
 endfun
 ]]
 
+-- https://vim.fandom.com/wiki/Different_syntax_highlighting_within_regions_of_a_file 
+vim.cmd [[
+function! TextEnableCodeSnip(filetype,start,end,textSnipHl) abort
+  let ft=toupper(a:filetype)
+  let group='textGroup'.ft
+  if exists('b:current_syntax')
+    let s:current_syntax=b:current_syntax
+    " Remove current syntax definition, as some syntax files (e.g. cpp.vim)
+    " do nothing if b:current_syntax is defined.
+    unlet b:current_syntax
+  endif
+  execute 'syntax include @'.group.' syntax/'.a:filetype.'.vim'
+  try
+    execute 'syntax include @'.group.' after/syntax/'.a:filetype.'.vim'
+  catch
+  endtry
+  if exists('s:current_syntax')
+    let b:current_syntax=s:current_syntax
+  else
+    unlet b:current_syntax
+  endif
+  execute 'syntax region textSnip'.ft.'
+  \ matchgroup='.a:textSnipHl.'
+  \ keepend
+  \ start="'.a:start.'" end="'.a:end.'"
+  \ contains=@'.group
+endfunction
 
+]]

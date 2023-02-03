@@ -300,6 +300,9 @@ local nMaps = {
     -- Markdown preview
     ["<LEADER>m"] = { ":MarkdownPreviewToggle<CR>", " Toggle markdown preview" },
 
+    -- Luasnip
+    ["<LEADER>s"] = { ':lua require("luasnip.loaders.from_lua").load({ paths = "~/.config/nvim/lua/rc/luasnippets/" })<CR>', " Reload snippets" },
+
     --[""] = { "", " " },
     --[""] = { "", " " },
     --[""] = { "", "" },

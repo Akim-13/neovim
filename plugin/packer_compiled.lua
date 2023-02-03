@@ -240,6 +240,11 @@ _G.packer_plugins = {
     path = "/home/akim/.local/share/nvim/site/pack/packer/start/vim-bbye",
     url = "https://github.com/moll/vim-bbye"
   },
+  ["vim-markdown"] = {
+    loaded = true,
+    path = "/home/akim/.local/share/nvim/site/pack/packer/start/vim-markdown",
+    url = "https://github.com/preservim/vim-markdown"
+  },
   ["vim-wakatime"] = {
     loaded = true,
     path = "/home/akim/.local/share/nvim/site/pack/packer/start/vim-wakatime",

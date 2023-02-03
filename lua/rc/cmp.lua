@@ -4,13 +4,26 @@ if not cmp_status_ok then
     return
 end
 
-local snip_status_ok, luasnip = pcall(require, "luasnip") 
+local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then
     vim.notify("ERROR: something is wrong with the snippets engine")
     return
 end
 
-require("luasnip/loaders/from_vscode").lazy_load()
+luasnip.config.set_config({
+    enable_autosnippets = true,
+    update_events = 'TextChanged,TextChangedI',
+    store_selection_keys = "<Tab>",
+})
+
+-- Jump forward/backward through tabstops in visual mode
+vim.cmd[[ 
+smap <silent><expr> <Tab> luasnip#jumpable(1) ? '<Plug>luasnip-jump-next' : '<Tab>' 
+smap <silent><expr> <S-Tab> luasnip#jumpable(-1) ? '<Plug>luasnip-jump-prev' : '<S-Tab>'
+]]
+
+require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/lua/rc/luasnippets/" })
+require("luasnip.loaders.from_vscode").lazy_load()
 
 -- Helps super tab to work better
 local check_backspace = function()
@@ -54,7 +67,7 @@ cmp.setup {
             luasnip.lsp_expand(args.body) -- For `luasnip` users.
         end,
     },
-    
+
     mapping = {
         ["<C-k>"] = cmp.mapping.select_prev_item(),
         ["<C-j>"] = cmp.mapping.select_next_item(),

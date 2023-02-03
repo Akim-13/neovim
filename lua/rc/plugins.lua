@@ -129,6 +129,9 @@ return packer.startup(function(use)
     -- Markdown previewer (requires manual installation with yarn, see GitHub)
     use 'iamcco/markdown-preview.nvim'
 
+    -- Nice markdown features
+    use 'preservim/vim-markdown'
+
     -- Automatically set up your configuration after cloning packer.nvim
     if PACKER_BOOTSTRAP then
       require("packer").sync()
