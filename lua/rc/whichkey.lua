@@ -173,10 +173,10 @@ local cOpts = {
 
 local iMaps = {
     -- Use hjkl with control
-    ["<C-h>"] = { "<C-o>h", ""},
-    ["<C-j>"] = { "<C-o>j", ""},
-    ["<C-k>"] = { "<C-o>k", ""},
-    ["<C-l>"] = { "<C-o>l", ""},
+    ["<C-h>"] = { "<Left>", ""},
+    ["<C-j>"] = { "<C-o>gj", ""},
+    ["<C-k>"] = { "<C-o>gk", ""},
+    ["<C-l>"] = { "<Right>", ""},
 }
 
 local vMaps = {

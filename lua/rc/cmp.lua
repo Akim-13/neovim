@@ -143,3 +143,13 @@ cmp.setup {
         native_menu = false,
     },
 }
+
+-- Only allow path completion in markdown files
+cmp.setup.filetype(
+    "markdown",
+    {
+        sources = cmp.config.sources({
+            { name = "path" }
+        })
+    }
+)

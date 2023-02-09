@@ -1,7 +1,3 @@
-vim.cmd 'hi colorcolumn ctermbg=0'                  -- Make a colorcolumn less obtrusive
-vim.cmd 'hi TSOperator guibg=NONE ctermbg=NONE'
-vim.cmd 'hi SpellBad cterm=underline ctermbg=None'  -- Make bad spelling underlined and red
-
 local options = {
 --  textwidth = 79,                                 -- Soft wrapping
     number = true,                                  -- Absolute line numbers
@@ -51,16 +47,19 @@ vim.cmd 'set t_kb=^?'
 
 
 -- AUTOCOMMANDS --
--- Change tabs to spaces every time buffer is written
-vim.cmd 'autocmd BufWrite * retab'
--- Save markdown file after each change
-vim.cmd 'autocmd TextChanged,TextChangedI *.md silent write'
--- Enable spell check in markdown and python files
-vim.cmd 'autocmd FileType markdown,python set spell'
--- But disable it for TERMINAL mode
-vim.cmd 'autocmd TermOpen * setlocal nospell'
--- More Markdown specific settings
-vim.cmd 'autocmd FileType markdown set tw=79'
+vim.cmd [[
+" Change tabs to spaces every time buffer is written
+autocmd BufWrite * retab
+" Save markdown file after each change
+autocmd TextChanged,TextChangedI *.md silent write
+" Enable spell check in python files (comments)
+autocmd FileType python set spell
+" But disable it for TERMINAL mode
+autocmd TermOpen * setlocal nospell
+" More Markdown specific settings
+autocmd FileType markdown set wrap linebreak
+" autocmd FileType markdown set textwidth=79
+]]
 
 -- Open help either vertically or horizontally depending on the window size
 vim.cmd [[
