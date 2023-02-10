@@ -10,35 +10,97 @@ local d = ls.dynamic_node
 local fmta = require("luasnip.extras.fmt").fmta
 local rep = require("luasnip.extras").rep
 
+local mathzone = require "rc/luasnippets/markdown/detect-mathzone"
+local in_mathzone = mathzone.in_mathzone
+
+local function insert_delim(args, _, delim)
+    local text = args[1][1]
+
+    -- "fb" - followed by, "fs" - forward slash.
+    local non_digit_fb_any_char_except_fs = string.find(text, "^%D.") and not string.find(text, "^\\")
+    local digits_fb_non_digit = string.find(text, "^%d+%D")
+    local fs_fb_non_spaces_fb_space = string.find(text, "^\\%S+%s")
+
+    if non_digit_fb_any_char_except_fs or digits_fb_non_digit or fs_fb_non_spaces_fb_space then
+        return delim
+    -- Insert a space at the end of an expression without a delimiter.
+    elseif delim == "}" then
+        return ' '
+    else
+        return ''
+    end
+end
+
+-- Insert {} only when required to improve readability.
+local function delim_get_visual(_, parent)
+    if (#parent.snippet.env.SELECT_RAW > 0) then
+        return sn(nil, {
+            f(insert_delim, {1}, { user_args = {"{"} }),
+            i(1, parent.snippet.env.SELECT_RAW),
+            f(insert_delim, {1},  { user_args = {"}"} })
+        })
+    else
+        return sn(nil, {
+            f(insert_delim, {1}, { user_args = {"{"} }),
+            i(1),
+            f(insert_delim, {1},  { user_args = {"}"} })
+        })
+    end
+end
+
 local get_visual = function(args, parent)
     if (#parent.snippet.env.SELECT_RAW > 0) then
         return sn(nil, i(1, parent.snippet.env.SELECT_RAW))
     else
-        return sn(nil, i(1, ''))
+        return sn(nil, i(1))
     end
 end
 
-local mathzone = require "rc/luasnippets/markdown/detect-mathzone"
-local in_mathzone = mathzone.in_mathzone
+-- For reference:
+--
+-- local function fn(
+--     args,     -- text from i(2) in this example i.e. { { "456" } }
+--     parent,   -- parent snippet or parent node
+--     l_delim,  -- user_args from opts.user_args
+--     r_delim   -- user_args from opts.user_args
+-- )
+--     return '[' .. l_delim .. args[1][1] .. r_delim .. ']'
+-- end
+--
+--     s({ name = "trig", trig = "trig", snippetType="autosnippet" },
+--         fmta(
+--             "<>--i(1) <> i(2)--<>--i(2) i(0)--<>",
+--             {
+--                 i(1),
+--                 f(
+--                     fn,  -- callback (args, parent, user_args) -> string
+--                     {2}, -- node indice(s) whose text is passed to fn, i.e. i(2)
+--                     { user_args = { "(", ")" }} -- opts
+--                 ),
+--                 i(2),
+--                 i(0)
+--             }
+--         )
+--     ),
 
 return {
+    s({ name = "Superscript/power", trig = "([%w%)%]%}])'", wordTrig=false, regTrig = true, snippetType="autosnippet" },
+        fmta(
+            "<>^<>",
+            {
+                f( function(_, snip) return snip.captures[1] end ),
+                d(1, delim_get_visual),
+            }
+        )
+        { condition = in_mathzone }
+    ),
+
     s({ name = "Fraction", trig = "ff", snippetType="autosnippet" },
         fmta(
             "\\frac{<>}{<>}",
             {
                 d(1, get_visual),
                 i(2),
-            }
-        ),
-        { condition = in_mathzone }
-    ),
-
-    s({ name = "Superscript", trig = "([%w%)%]%}])'", wordTrig=false, regTrig = true, snippetType="autosnippet" },
-        fmta(
-            "<>^{<>}",
-            {
-                f( function(_, snip) return snip.captures[1] end ),
-                d(1, get_visual),
             }
         ),
         { condition = in_mathzone }
@@ -51,7 +113,7 @@ return {
 
     s({ name = "Indefinite Integral", trig = "inti", snippetType="autosnippet" },
         fmta(
-            "\\int <> \\,\\mathrm{d}<>",
+            "\\int <> \\,\\mathrm d<>",
             {
                 d(1, get_visual),
                 i(2, "x"),
@@ -62,7 +124,7 @@ return {
 
     s({ name = "Definite Integral", trig = "intd", snippetType="autosnippet" },
         fmta(
-            "\\int_{<>}^{<>} <> \\,\\mathrm{d}<>",
+            "\\int_{<>}^{<>} <> \\,\\mathrm d<>",
             {
                 i(1),
                 i(2),
@@ -73,9 +135,10 @@ return {
         { condition = in_mathzone }
     ),
 
+    -- PREABMLE
     s({ name = "Derivative", trig = "dd", wordTrig = false, snippetType="autosnippet" },
         fmta(
-            "\\frac{\\mathrm{d}<>}{\\mathrm{d}<>}",
+            "\\drv{d<>}{d<>}",
             {
                 i(1),
                 i(2)
@@ -84,22 +147,23 @@ return {
         { condition = in_mathzone }
     ),
 
-    s({ name = "Derivative d/dx", trig = "dx", wordTrig = false, snippetType="autosnippet" },
+    -- PREABMLE
+    s({ name = "Derivative dy/dx", trig = "dyy", wordTrig = false, snippetType="autosnippet" },
         fmta(
-            "\\frac{\\mathrm{d}}{\\mathrm{d}x} \\left( <> \\right)",
+            "\\drv{d<>y}{dx<>}",
+            {
+                i(1),
+                i(2)
+            }
+        ),
+        { condition = in_mathzone }
+    ),
+
+    s({ name = "Derivative d/dx", trig = "dxx", wordTrig = false, snippetType="autosnippet" },
+        fmta(
+            "\\drv{d}{dx} \\left( <> \\right)",
             {
                 d(1, get_visual),
-            }
-        ),
-        { condition = in_mathzone }
-    ),
-
-    s({ name = "Derivative dy/dx", trig = "dy", wordTrig = false, snippetType="autosnippet" },
-        fmta(
-            "\\frac{\\mathrm{d}<>y}{\\mathrm{d}x<>}",
-            {
-                i(1),
-                i(2)
             }
         ),
         { condition = in_mathzone }
@@ -249,6 +313,34 @@ return {
         { condition = in_mathzone }
     ),
 
+    s({ name = "Cancel", trig = "cnl", snippetType="autosnippet" },
+        fmta(
+            "\\cancel{<>}",
+            {
+                d(1, get_visual)
+            }
+        ),
+        { condition = in_mathzone }
+    ),
+
+    s({ name = "Cancel to", trig = "tcnl", snippetType="autosnippet" },
+        fmta(
+            "\\cancelto{<>}{<>}",
+            {
+                i(1),
+                d(2, get_visual)
+            }
+        ),
+        { condition = in_mathzone }
+    ),
+
+    s({ name = "Not (crossed out)", trig = "cnot", snippetType="autosnippet" },
+        fmta(
+            "\\centernot{<>}",
+            {
+                d(1, get_visual)
+            }
+        ),
+        { condition = in_mathzone }
+    ),
 }
-
-

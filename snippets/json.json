@@ -1,14 +1,14 @@
 {
-	"Snippet": {
-		"prefix": "snip",
-		"body": [
-			"\"${1:Name}\": {",
-			"	\"prefix\": [\"${2}\"],",
-			"	\"body\": [\"${3}\"],",
-			"	\"description\": \"${0}\"",
-			"}"
-		],
-		"description": "Add a snippet"
-	}
+    "Snippet": {
+        "prefix": "snip",
+        "body": [
+            "\"${1:Name}\": {",
+            "   \"prefix\": [\"${2}\"],",
+            "   \"body\": [\"${3}\"],",
+            "   \"description\": \"${0}\"",
+            "}"
+        ],
+        "description": "Add a snippet"
+    }
 }
 

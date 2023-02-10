@@ -51,7 +51,7 @@ vim.cmd [[
 " Change tabs to spaces every time buffer is written
 autocmd BufWrite * retab
 " Save markdown file after each change
-autocmd TextChanged,TextChangedI *.md silent write
+" autocmd TextChanged,TextChangedI *.md silent write
 " Enable spell check in python files (comments)
 autocmd FileType python set spell
 " But disable it for TERMINAL mode
